@@ -79,7 +79,7 @@
   };
   programs.git = {
     enable = true;
-    userName  = "Yuriy";
+    userName  = "yurgov";
     userEmail = "yurgov@gmail.com";
   };
 
