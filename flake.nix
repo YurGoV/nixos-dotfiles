@@ -17,9 +17,9 @@
   
     in {
       nixosConfigurations = {
-        nixos = nixpkgs.lib.nixosSystem {
+        laptop = nixpkgs.lib.nixosSystem {
           inherit system;
-          modules = [ ./configuration.nix ];
+          modules = [ ./configuration-laptop.nix ];
         };
        };
        homeConfigurations = {
