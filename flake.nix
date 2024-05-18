@@ -21,6 +21,10 @@
           inherit system;
           modules = [ ./configuration-laptop.nix ];
         };
+        desktop = nixpkgs.lib.nixosSystem {
+          inherit system;
+          modules = [ ./configuration-desktop.nix ];
+        };
        };
        homeConfigurations = {
          yurgo = home-manager.lib.homeManagerConfiguration {
