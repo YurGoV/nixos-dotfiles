@@ -1,0 +1,27 @@
+return {
+
+ "nvimtools/none-ls.nvim",
+	-- "jose-elias-alvarez/null-ls.nvim",
+	opts = function(_, opts)
+		-- add markdown as supported file type start
+
+		local null_ls = require("null-ls")
+
+		null_ls.builtins.formatting.prettier.with({
+
+			extra_filetypes = { "vue" },
+		})
+
+		-- add markdown as supported file type end
+
+		table.insert(opts.sources, require("typescript.extensions.null-ls.code-actions"))
+	end,
+}
+
+-- `conform.nvim` and `nvim-lint` are now the default formatters and linters in LazyVim.
+--
+-- You can use those plugins together with `none-ls.nvim`,
+-- but you need to enable the `lazyvim.plugins.extras.lsp.none-ls` extra,
+-- for formatting to work correctly.
+--
+-- In case you no longer want to use `none-ls.nvim`, just remove the spec from your confi
