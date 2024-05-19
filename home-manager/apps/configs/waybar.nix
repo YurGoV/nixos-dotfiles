@@ -38,7 +38,7 @@
       battery = {
         format = "{capacity}% {icon}";
         format-alt = "{time} {icon}";
-        format-charging = "{capacity}% ";
+        format-charging = "{capacity}% ⚡";
         format-icons = [ "" "" "" "" "" ];
         format-plugged = "{capacity}% ";
         states = {
@@ -66,18 +66,18 @@
       };
       pulseaudio = {
         format = "{volume}% {icon} {format_source}";
-        format-bluetooth = "{volume}% {icon} {format_source}";
-        format-bluetooth-muted = " {icon} {format_source}";
+        format-bluetooth = "{volume}% {icon}  {format_source}";
+        format-bluetooth-muted = " {icon}  {format_source}";
         format-icons = {
           car = "";
           default = [ "" "" "" ];
-          handsfree = "";
+          handsfree = "";
           headphones = "";
-          headset = "";
+          headset = "";
           phone = "";
           portable = "";
         };
-        format-muted = " {format_source}";
+        format-muted = " {format_source}";
         format-source = "{volume}% ";
         format-source-muted = "";
         on-click = "pavucontrol";
