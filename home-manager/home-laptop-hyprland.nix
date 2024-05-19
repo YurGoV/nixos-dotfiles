@@ -101,6 +101,7 @@
     pavucontrol
     networkmanager
     wofi
+    hyprpaper
     # communication
     telegram-desktop
     zoom-us

@@ -16,6 +16,8 @@
 # Add a keybind to run this script on demand:
 # bind =,SomeKeyHere, exec, /path/to/hyprland-monitors-toggle.sh
 
+sleep 7
+
 # TODO: Detect these instead of hardcoding them
 INTERNAL_MONITOR="eDP-1"
 EXTERNAL_MONITOR="DP-1"

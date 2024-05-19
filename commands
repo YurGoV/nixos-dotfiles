@@ -26,4 +26,8 @@ ln -s ~/.dotfiles/home-manager/apps/configs/NvLazy ~/.config/NvLazy
 mkdir ~/.config/hypr/
 # make symlinc to hyprland config
 ln -s /home/yurgo/.dotfiles/home-manager/apps/configs/hyprland.conf /home/yurgo/.config/hypr/hyprland.conf
+ln -s /home/yurgo/.dotfiles/home-manager/apps/configs/hyprpaper.conf /home/yurgo/.config/hypr/hyprpaper.conf
+
+# make monitor toggle script executable
+chmod u+x ./scripts/hyprland/monitors-toggle
 
