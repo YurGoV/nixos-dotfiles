@@ -22,4 +22,8 @@ pnpm add -g @vue/typescript-plugin
 # make symlinc to nvim config:
 ln -s ~/.dotfiles/home-manager/apps/configs/NvLazy ~/.config/NvLazy
 
+# make hyprland dir
+mkdir ~/.config/hypr/
+# make symlinc to hyprland config
+ln -s /home/yurgo/.dotfiles/apps/configs/hyprland.conf /home/yurgo/.config/hypr/hyprland.conf
 

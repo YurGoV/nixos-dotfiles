@@ -67,7 +67,6 @@
     btop
     nodejs_20
     nodePackages.pnpm
-    telegram-desktop
     obsidian
     #git
     lazygit
@@ -101,6 +100,10 @@
     waybar
     pavucontrol
     networkmanager
+    wofi
+    # communication
+    telegram-desktop
+    zoom-us
   ];
 
 
