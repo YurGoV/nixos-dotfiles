@@ -45,7 +45,7 @@
 
   # Enable the XFCE Desktop Environment.
   # !turn on if no awesome config
-  # services.xserver.displayManager.lightdm.enable = true;
+  services.xserver.displayManager.lightdm.enable = false;
   services.xserver.desktopManager.xfce.enable = true;
 
   # sddm for wyland experimental support
@@ -53,30 +53,10 @@
   services.xserver.displayManager.sddm.wayland.enable = true;
 
   # Configure keymap in X11
-  services.xserver = {
-    layout = "us";
-    xkbVariant = "";
-  };
+  services.xserver.layout = "us,ua";
+  services.xserver.xkbVariant = "";
+  services.xserver.xkbOptions = "grp:rctrl_toggle";
 
-  # AWESOME WM
-  #services.xserver = {
-
-  #
-  #  displayManager = {
-  #      sddm.enable = true;
-  #      defaultSession = "none+awesome";
-  #  };
-
-  #  windowManager.awesome = {
-  #    enable = true;
-  #    luaModules = with pkgs.luaPackages; [
-  #      luarocks # is the package manager for Lua modules
-  #      luadbi-mysql # Database abstraction layer
-  #    ];
-
-  #  };
-  #};
-  # AWESOME WM
 
   # Enable CUPS to print documents.
   #services.printing.enable = true;
@@ -125,8 +105,8 @@
   xdg-desktop-portal-hyprland
   dconf
   xwayland
-  swaylock
-  swayidle
+  #swaylock
+  #swayidle
   wdisplays
   ];
 
