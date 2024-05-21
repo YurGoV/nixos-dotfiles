@@ -69,8 +69,8 @@
         interval = 3;
         format-alt = "{ifname}: {ipaddr}/{cidr}";
         format-disconnected = "Disconnected ⚠";
-        format-ethernet = "{ifname}: {ipaddr}/{cidr}   up: {bandwidthUpBits} down: {bandwidthDownBits}";
-        format-linked = "{ifname} (No IP) ";
+        format-ethernet = "{ifname}: {ipaddr}/{cidr} ⊡  up: {bandwidthUpBits} down: {bandwidthDownBits}";
+        format-linked = "{ifname} (No IP) noIp";
         format-wifi = "{essid} ({signalStrength}%) ";
         on-click = "nm-applet";
       };
