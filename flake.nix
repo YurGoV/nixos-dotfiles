@@ -33,7 +33,7 @@
 	           ./home-manager/home.nix
 	         ];
          };
-         laptop-hyprland = home-manager.lib.homeManagerConfiguration {
+         laptop = home-manager.lib.homeManagerConfiguration {
            inherit pkgs;
   	       modules = [
 	           ./home-manager/home-laptop.nix

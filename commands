@@ -2,11 +2,11 @@
 cp /etc/nixos/hardware-configuration.nix .
 
 # rebuild system on the first time (without flake installed):
-sudo nixos-rebuild switch --flake .#laptop-hyprland --experimental-features 'nix-command flakes'
+sudo nixos-rebuild switch --flake .#laptop --experimental-features 'nix-command flakes'
 
 # rebuild system all other times (with flake installed):
 sudo nixos-rebuild switch --flake . 
-sudo nixos-rebuild switch --flake .#laptop-hyprland
+sudo nixos-rebuild switch --flake .#laptop
 
 #install home manager:
 nix-channel --add [https://nixos.org/channels/nixos-23.11](https://nixos.org/channels/nixos-23.11) nixpkgs
