@@ -3,8 +3,9 @@
 {
   imports = [
     ./apps/zsh.nix
-    ./apps/alacritty.nix
+    ./apps/configs/termilals/alacritty.nix
     ./apps/configs/waybar.nix
+    ./apps/configs/termilals/kitty.nix
   ];
 
   # Home Manager needs a bit of information about you and the paths it should
@@ -75,6 +76,7 @@
     fira-code-nerdfont
     alacritty
     alacritty-theme
+    kitty
     gcc
     gnumake
     shfmt
