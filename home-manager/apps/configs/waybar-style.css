@@ -39,19 +39,23 @@ button:hover {
 }
 
 #workspaces button {
-  color: @fg;
+  /*color: @fg;*/
+  color: #888CA7;
   /* padding : 0px 5px; */
 }
 
 #workspaces button.urgent {
-  color: @alert;
+  /*color: @alert;*/
+  color: #888CA7;
 }
 #workspaces button.empty {
-  color: @disabled;
+  /*color: @disabled;*/
+  color: #888CA7;
 }
 
 #workspaces button.active {
-  color: #F2C187;
+  /*color: #F2C187;*/
+  color: #888CA7;
 }
 
 /* If workspaces is the leftmost module, omit left margin */

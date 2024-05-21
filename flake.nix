@@ -25,10 +25,6 @@
           inherit system;
           modules = [ ./configuration-desktop.nix ];
         };
-        laptop-hyprland = nixpkgs.lib.nixosSystem {
-          inherit system;
-          modules = [ ./configuration-laptop-hyprland.nix ];
-        };
        };
        homeConfigurations = {
          yurgo = home-manager.lib.homeManagerConfiguration {
@@ -40,7 +36,7 @@
          laptop-hyprland = home-manager.lib.homeManagerConfiguration {
            inherit pkgs;
   	       modules = [
-	           ./home-manager/home-laptop-hyprland.nix
+	           ./home-manager/home-laptop.nix
 	         ];
          };
 

@@ -6,6 +6,7 @@
     ./apps/configs/termilals/alacritty.nix
     ./apps/configs/waybar.nix
     ./apps/configs/termilals/kitty.nix
+    ./apps/configs/termilals/tmux.nix
   ];
 
   # Home Manager needs a bit of information about you and the paths it should
@@ -91,7 +92,7 @@
     xclip
     python311Packages.pynvim
     tree-sitter
-    docker
+    # docker
     mongodb-compass
     zsh-powerlevel10k
     # LUNARVIM
@@ -108,6 +109,8 @@
     # communication
     telegram-desktop
     zoom-us
+    #OFFICE
+    onlyoffice-bin
   ];
 
 
@@ -136,6 +139,14 @@
     userName  = "yurgov";
     userEmail = "yurgov@gmail.com";
   };
+
+  # programs.tmux = {
+  #   enable = true;
+  #   terminal = "tmux-256color";
+  #   extraConfig = ''
+  #     set-option -ga terminal-overrides ",*256col*:Tc:RGB"
+  #   '';
+  # };
 
   # Home Manager can also manage your environment variables through
   # 'home.sessionVariables'. If you don't want to manage your shell through Home

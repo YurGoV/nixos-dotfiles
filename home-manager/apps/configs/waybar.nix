@@ -18,7 +18,7 @@
       layer = "top";
       position = "bottom";
       tray = { spacing = 10; };
-      modules-center = [ "sway/window" ];
+      modules-center = [ "sway/window" "hyprland/workspaces" ];
       modules-left = [ "sway/workspaces" "sway/mode" ];
       modules-right = [
         "pulseaudio"
@@ -35,6 +35,16 @@
       #   "clock"
       #   "tray"
       ];
+      "hyprland/workspaces" = {
+        format = "{icon}";
+        on-click = "activate";
+        all-outputs = true;
+        format-icons = {
+          urgent = " ";
+          active = " ";
+          default = " ";
+        };
+      };
       battery = {
         format = "{capacity}% {icon}";
         format-alt = "{time} {icon}";

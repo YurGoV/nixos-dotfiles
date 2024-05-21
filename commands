@@ -2,10 +2,11 @@
 cp /etc/nixos/hardware-configuration.nix .
 
 # rebuild system on the first time (without flake installed):
-sudo nixos-rebuild switch --flake . --experimental-features 'nix-command flakes'
+sudo nixos-rebuild switch --flake .#laptop-hyprland --experimental-features 'nix-command flakes'
 
 # rebuild system all other times (with flake installed):
 sudo nixos-rebuild switch --flake . 
+sudo nixos-rebuild switch --flake .#laptop-hyprland
 
 #install home manager:
 nix-channel --add [https://nixos.org/channels/nixos-23.11](https://nixos.org/channels/nixos-23.11) nixpkgs
@@ -14,7 +15,7 @@ nix-channel --update
 nix-shell '<home-manager>' -A installed
 
 # rebuild home manager by flake
-home-manager switch --flake .
+home-manager switch --flake .#laptop-hyprland --impure
 
 # install pnpm vue/typescript module
 pnpm add -g @vue/typescript-plugin

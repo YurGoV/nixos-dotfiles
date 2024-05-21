@@ -30,6 +30,7 @@
       nv = "NVIM_APPNAME=NvLazy appimage-run ~/.dotfiles/home-manager/apps/bin/nvim.appimage";
 	    lv = "lvim";
       monitors-toggle = "~/.dotfiles/scripts/hyprland/monitors-toggle";
+      np = "swpm";
     };
     # PNPM SETUP
     sessionVariables = {
