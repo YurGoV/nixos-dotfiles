@@ -80,6 +80,7 @@ button:hover {
 #backlight-slider,
 #network,
 #pulseaudio,
+#pulseaudio-slider,
 #wireplumber,
 #custom-media,
 #taskbar,
@@ -101,7 +102,7 @@ button:hover {
 }
 
 #custom-power {
-  color: @fg;
+  color: #888CA7;
   padding-left: 10px;
 }
 

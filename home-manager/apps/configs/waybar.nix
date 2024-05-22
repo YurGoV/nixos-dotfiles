@@ -19,7 +19,7 @@
       position = "bottom";
       tray = { spacing = 10; };
       modules-center = [ "sway/window" "hyprland/workspaces" ];
-      modules-left = [ "sway/workspaces" "sway/mode" ];
+      modules-left = [ "sway/workspaces" "sway/mode" "custom/power" ];
       modules-right = [
         "pulseaudio"
         "bluetooth"
@@ -35,6 +35,11 @@
       #   "clock"
       #   "tray"
       ];
+      "custom/power" = {
+        format = " ⏻ ";
+        tooltip = false;
+        on-click = "wlogout --protocol layer-shell";
+      };
       "hyprland/workspaces" = {
         format = "{icon}";
         on-click = "activate";
@@ -86,6 +91,11 @@
           headset = "";
           phone = "";
           portable = "";
+        };
+        "pulseaudio/slider" = {
+          min = 0;
+          max = 100;
+          orientation = "horizontal";
         };
         format-muted = " {format_source}";
         format-source = "{volume}% ";

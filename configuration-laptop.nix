@@ -55,6 +55,8 @@
   services.xserver.displayManager.sddm.enable = true;
   services.xserver.displayManager.sddm.wayland.enable = true;
 
+  security.pam.services.swaylock = {};
+
   # Configure keymap in X11
   services.xserver.layout = "us,ua";
   services.xserver.xkbVariant = "";

@@ -7,6 +7,8 @@
     ./apps/configs/waybar.nix
     ./apps/configs/termilals/kitty.nix
     ./apps/configs/termilals/tmux.nix
+    ./apps/configs/waybar/wlogout.nix
+    ./apps/configs/swaylock.nix
   ];
 
   # Home Manager needs a bit of information about you and the paths it should
@@ -106,6 +108,7 @@
     networkmanager
     wofi
     hyprpaper
+    # wlogout
     # communication
     telegram-desktop
     zoom-us
