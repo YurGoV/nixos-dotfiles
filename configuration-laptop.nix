@@ -114,8 +114,8 @@
   mc
   # FOR HYPRLAND
   polkit
-  xdg-desktop-portal-hyprland
   dconf
+  # TODO: move xwayland to home-manager
   xwayland
   #swaylock
   #swayidle
@@ -123,6 +123,7 @@
   docker-compose
   ];
 
+  # TODO: move xwayland to home-manager
   # wayland
   programs.hyprland = {
     # Install the packages from nixpkgs
@@ -134,10 +135,12 @@
   #  enable = true;
   #  wrapperFeatures.gtk = true;
   #};
+  # TODO: move xwayland to home-manager
   xdg.portal = {
     enable = true;
     wlr.enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    # extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal-hyprland];
   };
   services.dbus.enable = true;
   #opengl

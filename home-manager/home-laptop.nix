@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ./apps/zsh.nix
+    ./apps/configs/shells/zsh.nix
     ./apps/configs/termilals/alacritty.nix
     ./apps/configs/waybar.nix
     ./apps/configs/termilals/kitty.nix
@@ -73,6 +73,7 @@
     nodejs_20
     nodePackages.pnpm
     obsidian
+    killall
     #git
     lazygit
     google-chrome
@@ -108,12 +109,22 @@
     networkmanager
     wofi
     hyprpaper
+    pipewire
+    wireplumber
+    # xdg-desktop-portal-hyprland
     # wlogout
     # communication
     telegram-desktop
     zoom-us
     #OFFICE
     onlyoffice-bin
+    # screen capture
+    grim
+    swappy
+    slurp
+    gpu-screen-recorder
+    simplescreenrecorder
+    wf-recorder
   ];
 
 

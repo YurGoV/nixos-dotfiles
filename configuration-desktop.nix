@@ -118,7 +118,6 @@
   mc
   # FOR HYPRLAND
   polkit
-  xdg-desktop-portal-hyprland
   dconf
   xwayland
   # swaylock
@@ -141,7 +140,7 @@
   xdg.portal = {
     enable = true;
     wlr.enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal-hyprland];
   };
   services.dbus.enable = true;
   #opengl

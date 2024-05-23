@@ -21,7 +21,7 @@
       }
       {
         name = "powerlevel10k-config";
-        src = ./configs;
+        src = ./zsh-powerlewel9k-config;
         file = "p10k.zsh";
       }
     ];
@@ -31,6 +31,7 @@
 	    lv = "lvim";
       monitors-toggle = "~/.dotfiles/scripts/hyprland/monitors-toggle";
       np = "swpm";
+      screen-recording = "~/.dotfiles/scripts/diff/screen-recording";
     };
     # PNPM SETUP
     sessionVariables = {
