@@ -9,6 +9,7 @@
     ./apps/configs/termilals/tmux.nix
     ./apps/configs/waybar/wlogout.nix
     ./apps/configs/swaylock.nix
+    ./apps/configs/mongodb/mongosh.nix
   ];
 
   # Home Manager needs a bit of information about you and the paths it should
