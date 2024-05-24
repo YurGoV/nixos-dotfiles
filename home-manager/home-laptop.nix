@@ -93,7 +93,8 @@
     unzip
     wget
     markdownlint-cli
-    xclip
+    # xclip
+    wl-clipboard
     python311Packages.pynvim
     tree-sitter
     # docker

@@ -15,7 +15,7 @@ nix-channel --update
 nix-shell '<home-manager>' -A install
 
 # rebuild home manager by flake
-home-manager switch --flake .#laptop-hyprland --impure
+home-manager switch --flake .#laptop --impure
 
 # install pnpm vue/typescript module
 pnpm add -g @vue/typescript-plugin
