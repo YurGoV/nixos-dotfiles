@@ -128,6 +128,13 @@
   wdisplays
   docker-compose
   docker
+  # video hw acceleration ???
+  libva
+  libvdpau-va-gl
+  vaapiVdpau
+  libvdpau-va-gl
+  libva-utils
+  ffmpeg_5-full
   ];
 
   # wayland

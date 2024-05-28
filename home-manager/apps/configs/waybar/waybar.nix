@@ -6,7 +6,7 @@
     enable = true;
     systemd.enable = true;
     style = ''
-      ${builtins.readFile "/home/yurgo/.dotfiles/home-manager/apps/configs/waybar-style.css"}
+      ${builtins.readFile "/home/yurgo/.dotfiles/home-manager/apps/configs/waybar/waybar-style.css"}
 
       window#waybar {
         background: transparent;

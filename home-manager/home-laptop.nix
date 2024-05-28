@@ -4,12 +4,13 @@
   imports = [
     ./apps/configs/shells/zsh.nix
     ./apps/configs/termilals/alacritty.nix
-    ./apps/configs/waybar.nix
+    ./apps/configs/waybar/waybar.nix
+    ./apps/configs/waybar/wlogout.nix
     ./apps/configs/termilals/kitty.nix
     ./apps/configs/termilals/tmux.nix
-    ./apps/configs/waybar/wlogout.nix
     ./apps/configs/swaylock.nix
     ./apps/configs/mongodb/mongosh.nix
+    ./apps/configs/wofi/wofi.nix
   ];
 
   # Home Manager needs a bit of information about you and the paths it should
@@ -109,7 +110,7 @@
     waybar
     pavucontrol
     networkmanager
-    wofi
+    # wofi
     hyprpaper
     pipewire
     wireplumber
