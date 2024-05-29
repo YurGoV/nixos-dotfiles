@@ -32,6 +32,7 @@
       monitors-toggle = "~/.dotfiles/scripts/hyprland/monitors-toggle";
       np = "swpm";
       screen-recording = "~/.dotfiles/scripts/diff/screen-recording";
+      reencode-screen-record = "~/.dotfiles/scripts/diff/reencode-screen-record";
     };
     # PNPM SETUP
     sessionVariables = {

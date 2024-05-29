@@ -1,1 +1,5 @@
-wf-recorder -a -f ~/Videos/screen-record_24.05.23-16.44.44.mp4
+
+# wf-recorder -a -f ~/Videos/screen-record_24.05.23-16.44.44.mp4
+wf-recorder -a -f ~/Videos/raw_video.mp4 --codec-options=crf=23,preset=ultrafast,profile=high,level=4.1
+
+

@@ -52,7 +52,6 @@
   #         )
   #         10)
   #     );
-  # };
 
   # wayland.windowManager.hyprland.settings = {
   #   decoration = {
@@ -103,6 +102,10 @@
     zsh-powerlevel10k
     # LUNARVIM
     lunarvim
+    #??? not work
+    # luaPackages.jsregexp
+    # vimPlugins.luasnip
+    #??? not work
     #neovim
     #python311Packages.flake8
     appimage-run
@@ -128,6 +131,11 @@
     gpu-screen-recorder
     simplescreenrecorder
     wf-recorder
+    # linux console utils
+    ncdu
+    bat
+    fd
+    eza
   ];
 
 
@@ -148,7 +156,7 @@
 
   programs.neovim = {
       enable = true;
-      plugins = [ pkgs.vimPlugins.luasnip ];
+      plugins = [ pkgs.vimPlugins.luasnip pkgs.vimPlugins.cmp_luasnip ];
       extraLuaPackages = ps: [ ps.jsregexp ];
   };
   programs.git = {
@@ -156,6 +164,10 @@
     userName  = "yurgov";
     userEmail = "yurgov@gmail.com";
   };
+
+  # keyring - not work
+  # services.gnome.gnome-keyring.enable = true; #???
+  # security.pam.services.sddm.enableGnomeKeyring = true;
 
   # programs.tmux = {
   #   enable = true;

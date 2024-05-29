@@ -60,6 +60,10 @@
   services.xserver.displayManager.sddm.wayland.enable = true;
 
   security.pam.services.swaylock = {};
+  # ??? gmome keyring (not work)
+  # services.gnome.gnome-keyring.enable = true; #???
+  # security.pam.services.sddm.enableGnomeKeyring = true;
+  # ??? gmome keyring (not work)
 
   # Configure keymap in X11
   services.xserver.layout = "us,ua";
@@ -129,12 +133,16 @@
   docker-compose
   docker
   # video hw acceleration ???
+  #?? not work?? not in laptop config
   libva
   libvdpau-va-gl
   vaapiVdpau
   libvdpau-va-gl
   libva-utils
   ffmpeg_5-full
+  #?? not work??
+  # keyring (with other settings)
+  # gnome.gnome-keyring
   ];
 
   # wayland

@@ -1,0 +1,2 @@
+ffmpeg -i ~/Videos/raw_video.mp4 -vf "format=yuv420p" -profile:v high -level:v 4.1 -c:v libx264 -crf 23 -preset medium -c:a aac -b:a 128k ~/Videos/output.mp4
+
