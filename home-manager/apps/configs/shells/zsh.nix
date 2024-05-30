@@ -33,6 +33,8 @@
       np = "swpm";
       screen-recording = "~/.dotfiles/scripts/diff/screen-recording";
       reencode-screen-record = "~/.dotfiles/scripts/diff/reencode-screen-record";
+      # run psql util temporary
+      psql="nix shell nixpkgs#postgresql --command psql";
     };
     # PNPM SETUP
     sessionVariables = {
