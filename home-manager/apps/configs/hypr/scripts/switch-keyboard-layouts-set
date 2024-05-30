@@ -1,0 +1,18 @@
+#!/home/yurgo/.nix-profile/bin/zsh
+
+# Run the hyprctl devices command and store the output in a variable
+output=$(hyprctl devices)
+
+# Check if the output contains "us,ua"
+if [[ $output == *"us,ua"* ]]; then
+    # Run the command to switch to "us,ru"
+    hyprctl keyword input:kb_layout us,ru &
+    #echo "Switched to us,ru layout"
+elif [[ $output == *"us,ru"* ]]; then
+    # Run the command to switch to "us,ua"
+    hyprctl keyword input:kb_layout us,ua &
+    #echo "Switched to us,ua layout"
+else
+    #echo "Current layout not recognized or script encountered an error"
+fi
+
