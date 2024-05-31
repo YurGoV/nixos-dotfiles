@@ -32,3 +32,5 @@ ln -s /home/yurgo/.dotfiles/home-manager/apps/configs/hypr/hyprpaper.conf /home/
 # make monitor toggle script executable
 chmod u+x ./scripts/hyprland/monitors-toggle
 
+#list disc partitions wigh UUIDs:
+lsblk -f
