@@ -52,15 +52,20 @@
   services.xserver.desktopManager.xfce.enable = true;
 
   # sddm for wyland experimental support
-  services.xserver.displayManager.sddm.enable = true;
-  services.xserver.displayManager.sddm.wayland.enable = true;
+  ##services.xserver.displayManager.sddm.enable = true;
+  ##services.xserver.displayManager.sddm.wayland.enable = true;
+  services.displayManager.sddm.wayland.enable = true;
+  services.displayManager.sddm.enable = true;
 
   security.pam.services.swaylock = {};
 
   # Configure keymap in X11
-  services.xserver.layout = "us,ua";
-  services.xserver.xkbVariant = "";
-  services.xserver.xkbOptions = "grp:rctrl_toggle";
+  ##services.xserver.layout = "us,ua";
+  ##services.xserver.xkbVariant = "";
+  ##services.xserver.xkbOptions = "grp:rctrl_toggle";
+  services.xserver.xkb.variant = "";
+  services.xserver.xkb.options = "grp:rctrl_toggle";
+  services.xserver.xkb.layout = "us,ua";
 
 
   # Enable CUPS to print documents.
@@ -171,7 +176,7 @@
     #fira-code-symbols
   ];
 
-  system.stateVersion = "23.11"; # Did you read the comment?
+  system.stateVersion = "24.05"; # Did you read the comment?
   
   # HOME MANAGER
   nix.settings.experimental-features = [ "nix-command" "flakes" ];

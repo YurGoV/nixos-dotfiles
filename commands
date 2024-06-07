@@ -9,8 +9,8 @@ sudo nixos-rebuild switch --flake .
 sudo nixos-rebuild switch --flake .#laptop
 
 #install home manager:
-nix-channel --add https://nixos.org/channels/nixos-23.11 nixpkgs
-sudo nix-channel --add https://github.com/nix-community/home-manager/archive/release-23.11.tar.gz home-manager
+nix-channel --add https://nixos.org/channels/nixos-24.05 nixpkgs
+sudo nix-channel --add https://github.com/nix-community/home-manager/archive/release-24.05.tar.gz home-manager
 nix-channel --update
 nix-shell '<home-manager>' -A install
 
@@ -34,3 +34,18 @@ chmod u+x ./scripts/hyprland/monitors-toggle
 
 #list disc partitions wigh UUIDs:
 lsblk -f
+
+# upgrade to 24.05
+# after change flake.nix:
+nix flake update
+
+sudo nix-channel --add https://channels.nixos.org/nixos-24.05 nixos
+
+nix-channel --add https://nixos.org/channels/nixos-24.05 nixpkgs
+sudo nix-channel --remove home-manager
+sudo nix-channel --update
+sudo nix-channel --add https://github.com/nix-community/home-manager/archive/release-24.05.tar.gz home-manager
+sudo nix-channel --update
+
+sudo nixos-rebuild switch --flake .#laptop
+home-manager switch --flake .#laptop --impure
