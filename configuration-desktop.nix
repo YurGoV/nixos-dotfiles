@@ -19,6 +19,8 @@
   boot.loader.grub.devices = [ "/dev/sda" ];
   boot.loader.grub.useOSProber = true;
 
+  ## test for sleep
+  ##boot.resumeDevice = "/var/lib/swapfile";
 
 
   networking.hostName = "desktop"; # Define your hostname.
@@ -66,6 +68,10 @@
   # services.gnome.gnome-keyring.enable = true; #???
   # security.pam.services.sddm.enableGnomeKeyring = true;
   # ??? gmome keyring (not work)
+
+  ## CHECK HIBERNARTE
+  ## test for sleep
+  # security.protectKernelImage = false;
 
   # Configure keymap in X11
   ##services.xserver.layout = "us,ua";

@@ -51,3 +51,8 @@ sudo nix-channel --update
 
 sudo nixos-rebuild switch --flake .#laptop
 home-manager switch --flake .#laptop --impure
+
+#list all generations:
+sudo nix-env --list-generations --profile /nix/var/nix/profiles/system
+#remove all generations except current:
+sudo nix-collect-garbage -d 

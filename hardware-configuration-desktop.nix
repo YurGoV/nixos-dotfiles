@@ -13,6 +13,9 @@
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
+  ## test for sleep
+  # boot.resumeDevice  = "/var/lib/swapfile";
+
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/8a16601a-f6d0-4968-9133-39bae37c4349";
       fsType = "ext4";
@@ -31,6 +34,8 @@
   # swapDevices = [ ];
   swapDevices =
     [ { device = "/dev/disk/by-uuid/30f06202-3d66-41ef-adb0-6f0dae3f4958"; }
+      ## test for sleep
+      # { device = "/var/lib/swapfile"; size = 27*1024; }
     ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
