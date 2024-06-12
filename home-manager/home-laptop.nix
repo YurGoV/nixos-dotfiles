@@ -71,10 +71,11 @@
 
   home.packages = with pkgs; [
     btop
-    nodejs_20
+    nodejs_22
     nodePackages.pnpm
     obsidian
     killall
+    vifm-full
     #git
     lazygit
     google-chrome
