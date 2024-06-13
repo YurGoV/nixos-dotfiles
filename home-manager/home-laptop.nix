@@ -76,9 +76,11 @@
     obsidian
     killall
     vifm-full
+    pcmanfm
     #git
     lazygit
     google-chrome
+    firefox
     fira-code-nerdfont
     alacritty
     alacritty-theme

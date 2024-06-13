@@ -48,8 +48,8 @@
 
   # Enable the XFCE Desktop Environment.
   # !turn on if no awesome config
-  services.xserver.displayManager.lightdm.enable = false;
-  services.xserver.desktopManager.xfce.enable = true;
+  # services.xserver.displayManager.lightdm.enable = false;
+  # services.xserver.desktopManager.xfce.enable = true;
 
   # sddm for wyland experimental support
   ##services.xserver.displayManager.sddm.enable = true;
@@ -98,7 +98,7 @@
   };
 
   # Install firefox.
-  programs.firefox.enable = true;
+  # programs.firefox.enable = true;
 
 
   # Allow unfree packages
