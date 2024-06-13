@@ -11,6 +11,7 @@
     ./apps/configs/swaylock.nix
     ./apps/configs/mongodb/mongosh.nix
     ./apps/configs/wofi/wofi.nix
+    ./apps/configs/vifm/vifm.nix
   ];
 
   # Home Manager needs a bit of information about you and the paths it should
@@ -75,7 +76,7 @@
     nodePackages.pnpm
     obsidian
     killall
-    vifm-full
+    # vifm-full
     pcmanfm
     #git
     lazygit
