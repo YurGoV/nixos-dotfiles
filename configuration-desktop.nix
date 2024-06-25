@@ -19,8 +19,18 @@
   boot.loader.grub.devices = [ "/dev/sda" ];
   boot.loader.grub.useOSProber = true;
 
+  #for hibernate:
+  # boot.kernelParams = [
+  #   "resume=/dev/disk/by-uuid/30f06202-3d66-41ef-adb0-6f0dae3f4958"
+  # ];
+  # Enable power management
+  # services.powerd.enable = true;
+  # services.upower.enable = true;
+
   ## test for sleep
   ##boot.resumeDevice = "/var/lib/swapfile";
+  ## Powermanagement (for suspend & hibernate)
+  powerManagement.enable = true;
 
 
   networking.hostName = "desktop"; # Define your hostname.
