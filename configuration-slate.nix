@@ -6,7 +6,7 @@
     ];
 
   # kernelParams
-  boot.initrd.kernelModules = [ "amdgpu" ];
+  boot.kernelParams = [ "i915.force_probe=4e71" ];
 
   # BootParams
   boot.loader.efi.canTouchEfiVariables = true;
@@ -69,7 +69,7 @@
   # Enable the X11 windowing system.
   services.xserver.enable = true;
   #? Intel drivers
-  services.xserver.videoDrivers = [ "amdgpu" ];
+  services.xserver.videoDrivers = [ "intel" ];
   
 
   # Enable the XFCE Desktop Environment.
