@@ -10,7 +10,6 @@ sudo nixos-rebuild switch --flake .#laptop
 
 #install home manager:
 nix-channel --add https://nixos.org/channels/nixos-24.05 nixpkgs
-??sudo?? nix-channel --add https://github.com/nix-community/home-manager/archive/release-24.05.tar.gz home-manager
 sudo nix-channel --add https://github.com/nix-community/home-manager/archive/release-24.05.tar.gz home-manager
 nix-channel --update
 nix-shell '<home-manager>' -A install
@@ -29,6 +28,9 @@ mkdir ~/.config/hypr/
 # make symlinc to hyprland config
 ln -s /home/yurgo/.dotfiles/home-manager/apps/configs/hypr/hyprland.conf /home/yurgo/.config/hypr/hyprland.conf
 ln -s /home/yurgo/.dotfiles/home-manager/apps/configs/hypr/hyprpaper.conf /home/yurgo/.config/hypr/hyprpaper.conf
+
+# make NvLazy config symlink
+ln -s /home/yurgo/.dotfiles/home-manager/apps/configs/NvLazy /home/yurgo/.config/NvLazy
 
 # make monitor toggle script executable
 chmod u+x ./scripts/hyprland/monitors-toggle

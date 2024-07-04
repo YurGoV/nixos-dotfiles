@@ -9,6 +9,8 @@
   boot.initrd.kernelModules = [ "amdgpu" ];
 
   # BootParams
+  boot.loader.systemd-boot.enable = false;
+
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.grub.enable = true;
   boot.loader.grub.devices = [ "nodev" ];
@@ -31,12 +33,12 @@
         CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
 
         CPU_MIN_PERF_ON_AC = 0;
-        CPU_MAX_PERF_ON_AC = 100;
+        CPU_MAX_PERF_ON_AC = 80;
         CPU_MIN_PERF_ON_BAT = 0;
         CPU_MAX_PERF_ON_BAT = 20;
 
        #Optional helps save long term battery health
-       START_CHARGE_THRESH_BAT0 = 45; # 40 and bellow it starts to charge
+       START_CHARGE_THRESH_BAT0 = 55; # 40 and bellow it starts to charge
        STOP_CHARGE_THRESH_BAT0 = 60; # 80 and above it stops charging
 
       };
@@ -146,6 +148,7 @@
   xfce.xfce4-systemload-plugin
   vim
   mc
+  git
   # FOR HYPRLAND
   polkit
   dconf
