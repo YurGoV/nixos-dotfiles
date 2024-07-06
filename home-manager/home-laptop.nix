@@ -163,11 +163,11 @@
       plugins = [ pkgs.vimPlugins.luasnip pkgs.vimPlugins.cmp_luasnip ];
       extraLuaPackages = ps: [ ps.jsregexp ];
   };
-  programs.git = {
-    enable = true;
-    userName  = "yurgov";
-    userEmail = "yurgov@gmail.com";
-  };
+  # programs.git = {
+  #   enable = true;
+  #   userName  = "yurgov";
+  #   userEmail = "yurgov@gmail.com";
+  # };
 
   # keyring - not work
   # services.gnome.gnome-keyring.enable = true; #???

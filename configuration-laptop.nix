@@ -6,7 +6,7 @@
     ];
 
   # kernelParams
-  boot.initrd.kernelModules = [ "amdgpu" ];
+  # boot.initrd.kernelModules = [ "amdgpu" ];
 
   # BootParams
   boot.loader.systemd-boot.enable = false;
@@ -26,20 +26,26 @@
   services.tlp = {
       enable = true;
       settings = {
-        CPU_SCALING_GOVERNOR_ON_AC = "performance";
-        CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+        # CPU_SCALING_GOVERNOR_ON_AC = "performance";
+        CPU_SCALING_GOVERNOR_ON_AC = "schedutil";
+        # CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+        CPU_SCALING_GOVERNOR_ON_BAT = "schedutil"; # Use schedutil for dynamic power management
 
         CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
         CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
 
         CPU_MIN_PERF_ON_AC = 0;
-        CPU_MAX_PERF_ON_AC = 80;
+        CPU_MAX_PERF_ON_AC = 70;
         CPU_MIN_PERF_ON_BAT = 0;
-        CPU_MAX_PERF_ON_BAT = 20;
+        CPU_MAX_PERF_ON_BAT = 50;
 
        #Optional helps save long term battery health
-       START_CHARGE_THRESH_BAT0 = 55; # 40 and bellow it starts to charge
-       STOP_CHARGE_THRESH_BAT0 = 60; # 80 and above it stops charging
+       START_CHARGE_THRESH_BAT0 = 55; # 55 and bellow it starts to charge
+       STOP_CHARGE_THRESH_BAT0 = 60; # 60 and above it stops charging
+
+       # Disable Bluetooth power saving
+       USB_BLACKLIST_BTUSB = 1; # Disable USB autosuspend for all Bluetooth USB devices
+       USB_AUTOSUSPEND = 0; # Alternatively, disable autosuspend for all USB devices if needed
 
       };
   };

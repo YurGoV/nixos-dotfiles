@@ -20,17 +20,14 @@ home-manager switch --flake .#laptop --impure
 # install pnpm vue/typescript module
 pnpm add -g @vue/typescript-plugin
 
-# make symlinc to nvim config:
-ln -s ~/.dotfiles/home-manager/apps/configs/NvLazy ~/.config/NvLazy
-
 # make hyprland dir
 mkdir ~/.config/hypr/
 # make symlinc to hyprland config
 ln -s /home/yurgo/.dotfiles/home-manager/apps/configs/hypr/hyprland.conf /home/yurgo/.config/hypr/hyprland.conf
 ln -s /home/yurgo/.dotfiles/home-manager/apps/configs/hypr/hyprpaper.conf /home/yurgo/.config/hypr/hyprpaper.conf
 
-# make NvLazy config symlink
-ln -s /home/yurgo/.dotfiles/home-manager/apps/configs/NvLazy /home/yurgo/.config/NvLazy
+# make symlinc to nvim config:
+ln -s ~/.dotfiles/home-manager/apps/configs/NvLazy ~/.config/NvLazy
 
 # make monitor toggle script executable
 chmod u+x ./scripts/hyprland/monitors-toggle
