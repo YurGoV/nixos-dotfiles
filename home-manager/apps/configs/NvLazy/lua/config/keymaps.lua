@@ -16,3 +16,12 @@ end
 -- vim.keymap.set("n", "<C-j>", lazyterm)
 vim.keymap.set("n", "<tab>j", lazyterm)
 vim.keymap.set("t", "<tab>j", "<cmd>close<cr>")
+
+-- rebind format command
+-- vim.keymap.set("n", "<leader>lf", "<Leader>cf")
+-- formatting
+-- use `vim.keymap.set` instead
+local map = LazyVim.safe_keymap_set
+map({ "n", "v" }, "<leader>lf", function()
+  LazyVim.format({ force = true })
+end, { desc = "Format" })

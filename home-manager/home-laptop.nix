@@ -1,6 +1,12 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
-{
+# added for unstable neovim
+let
+  unstable = import (builtins.fetchTarball "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz") { };
+
+#add 'in' for unstable neovim
+in {
+# {
   imports = [
     ./apps/configs/shells/zsh.nix
     ./apps/configs/termilals/alacritty.nix
@@ -70,6 +76,15 @@
   #   ];
   # };
 
+  ## added for unstable neovim
+  # nixpkgs.overlays = [
+  #   (self: super: {
+  #     neovim = unstable.neovim.override { # We're overriding with the unstable package
+  #       vimAlias = true;
+  #     };
+  #   })
+  # ];
+
   home.packages = with pkgs; [
     btop
     nodejs_22
@@ -93,24 +108,38 @@
     ripgrep
     fd
     fzf
-    vimPlugins.luasnip
     unzip
     wget
-    markdownlint-cli
     # xclip
     wl-clipboard
-    python311Packages.pynvim
-    tree-sitter
+    # python311Packages.pynvim
     # docker
     mongodb-compass
     zsh-powerlevel10k
     # LUNARVIM
     lunarvim
+    python312Packages.pip
+    python3
+    cargo
     #??? not work
     # luaPackages.jsregexp
     # vimPlugins.luasnip
     #??? not work
-    #neovim
+    # neovim
+    (unstable.neovim.override { vimAlias = true; })
+    # vimPlugins.neodev-nvim
+    tree-sitter
+    lua51Packages.lua
+    luarocks
+    viu
+    chafa
+    ueberzugpp
+    # vimPlugins.cmp_luasnip
+    # lua
+    # vimPlugins.luasnip
+    # vimPlugins.vim-markdown-toc
+    # vimPlugins.luasnip
+    # markdownlint-cli
     #python311Packages.flake8
     appimage-run
     # for hyprland
@@ -140,6 +169,9 @@
     bat
     fd
     eza
+    #helix
+    nil
+    nixpkgs-fmt
   ];
 
 
@@ -158,10 +190,104 @@
     # '';
   };
 
-  programs.neovim = {
-      enable = true;
-      plugins = [ pkgs.vimPlugins.luasnip pkgs.vimPlugins.cmp_luasnip ];
-      extraLuaPackages = ps: [ ps.jsregexp ];
+  # programs.neovim = {
+  #   enable = true;
+  #   # package = pkgs.neovim;
+  #   plugins = [ pkgs.vimPlugins.luasnip pkgs.vimPlugins.cmp_luasnip pkgs.vimPlugins.nvim-treesitter.withAllGrammars ];
+  #   extraLuaPackages = ps: [ ps.jsregexp ];
+  # };
+  programs.helix = {
+    enable = true;
+    settings = {
+      theme = "autumn_night_transparent";
+      editor.cursor-shape = {
+        normal = "block";
+        insert = "bar";
+        select = "underline";
+      };
+    };
+    # tree-sitter = {
+    #     ensure_installed = [
+    #       "typescript"
+    #       "tsx"
+    #       "json"
+    #       "jsonc"
+    #       "vue"
+    #       "nix"
+    #     ];
+    #   };
+    languages.language = [
+      {
+        name = "nix";
+        auto-format = true;
+        formatter = { command = "nixpkgs-fmt"; };
+        # formatter.command = "${pkgs.nixfmt-classic}/bin/nixfmt";
+      }
+      {
+        name = "typescript";
+        formatter = { command = "prettier"; args = [ "--parser" "typescript" ]; };
+        auto-format = true;
+      }
+      {
+        name = "json";
+        formatter = { command = "prettier"; args = [ "--parser" "json" ]; };
+        auto-format = true;
+      }
+      {
+        name = "vue";
+        auto-format = true;
+        formatter = { command = "prettier"; args = [ "--parser" "vue" ]; };
+        language-servers = [ "typescript-language-server" ];
+        #added to test:
+        injection-regex = "vue";
+        scope = "source.vue";
+        file-types = ["vue"];
+        roots = ["package.json"];
+      }
+    ];
+    languages.language-server.typescript-language-server.config.plugins = [
+      {
+        name = "@vue/typescript-plugin";
+        location = "/home/yurgo/.pnpm-global/5/node_modules/@vue/language-server/";
+        # location = <path to "node_modules/@vue/language-server/">
+        languages = ["vue"];
+      }
+    ];
+    # extraConfig = builtins.toFile "languages.toml" ''
+    #   [[language]]
+    #   name = "vue"
+    #   auto-format = true
+    #   formatter = { command = "prettier", args = ["--parser", "vue"] }
+    #   language-servers = ["typescript-language-server"]
+    #
+    #   [[language-server.typescript-language-server.config.plugins]]
+    #   name = "@vue/typescript-plugin"
+    #   location = "/home/yurgo/.pnpm-global/5/node_modules/@vue/language-server/"
+    #   languages = ["vue"]
+    # '';
+    # language-server = {
+    #     typescript = {
+    #       command = "${pkgs.typescript-language-server}/bin/typescript-language-server";
+    #       args = ["--stdio"];
+    #       root-patterns = ["package.json" "tsconfig.json" ".git"];
+    #       filetypes = ["typescript" "typescriptreact" "vue"];
+    #       settings = {
+    #         plugins = [
+    #           {
+    #             name = "@vue/typescript-plugin";
+    #             location = "/home/yurgo/.pnpm-global/5/node_modules/@vue/language-server/";
+    #             languages = ["vue"];
+    #           }
+    #         ];
+    #       };
+    #     };
+    #   };
+    themes = {
+      autumn_night_transparent = {
+        "inherits" = "autumn_night";
+        "ui.background" = { };
+      };
+    };
   };
   # programs.git = {
   #   enable = true;
@@ -195,11 +321,16 @@
   home.sessionVariables = {
     EDITOR = "nvim";
     NIXPKGS_ALLOW_UNFREE = 1;
-    NIXPKGS_ALLOW_INSECURE=1;
+    NIXPKGS_ALLOW_INSECURE = 1;
+    ## added for unstable neovim
+    PATH = lib.makeBinPath [
+      pkgs.neovim
+      # Add other necessary paths here if needed
+    ];
   };
 
   # Let Home Manager install and manage itself.
   programs.home-manager = {
-  enable = true;
+    enable = true;
   };
 }

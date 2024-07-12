@@ -30,8 +30,10 @@
     ];
     shellAliases = {
       #nv = "NVIM_APPNAME=NvLazy nvim";
-      nv = "NVIM_APPNAME=NvLazy appimage-run ~/.dotfiles/home-manager/apps/bin/nvim.appimage";
-	    lv = "lvim";
+      nvv = "NVIM_APPNAME=NvLazy appimage-run ~/.dotfiles/home-manager/apps/bin/nvim.appimage";
+      nv = "NVIM_APPNAME=NvLazy nvim";
+      lv = "NVIM_APPNAME=lvim appimage-run ~/.dotfiles/home-manager/apps/bin/nvim.appimage";
+	    # lv = "lvim";
       monitors-toggle = "~/.dotfiles/scripts/hyprland/monitors-toggle";
       np = "swpm";
       screen-recording = "~/.dotfiles/scripts/diff/screen-recording";
