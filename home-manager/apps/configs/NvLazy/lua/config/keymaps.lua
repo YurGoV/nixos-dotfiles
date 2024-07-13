@@ -21,7 +21,8 @@ vim.keymap.set("t", "<tab>j", "<cmd>close<cr>")
 -- vim.keymap.set("n", "<leader>lf", "<Leader>cf")
 -- formatting
 -- use `vim.keymap.set` instead
-local map = LazyVim.safe_keymap_set
-map({ "n", "v" }, "<leader>lf", function()
-  LazyVim.format({ force = true })
-end, { desc = "Format" })
+--
+-- local map = LazyVim.safe_keymap_set
+-- map({ "n", "v" }, "<leader>lf", function()
+--   LazyVim.format({ force = true })
+-- end, { desc = "Format" })

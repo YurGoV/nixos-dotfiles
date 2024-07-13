@@ -61,4 +61,9 @@ sudo nix-env --list-generations --profile /nix/var/nix/profiles/system
 #remove all generations except current:
 sudo nix-collect-garbage -d 
 
-
+###
+DRI_PRIME=1 <your_program>
+nix-shell -p davinci-resolve radeontop clinfo rocmPackages.clr rocmPackages_5.clr 
+ clinfo --list
+Platform #0: AMD Accelerated Parallel Processing
+ `-- Device #0: gfx902:xnack+
