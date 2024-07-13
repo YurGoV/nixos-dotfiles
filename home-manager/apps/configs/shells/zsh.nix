@@ -48,6 +48,7 @@
     initExtra = ''
       bindkey '^f' autosuggest-accept
       export PATH="$PNPM_HOME:$PATH"
+      export PATH="$HOME/.npm-global/bin:$PATH"
     '';
   };
 
