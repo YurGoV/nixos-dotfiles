@@ -104,7 +104,6 @@ in {
     markdownlint-cli
     # xclip
     wl-clipboard
-    python311Packages.pynvim
     tree-sitter
     # docker
     mongodb-compass
@@ -118,9 +117,12 @@ in {
     #neovim
     (unstable.neovim.override { vimAlias = true; })
     # vimPlugins.neodev-nvim
+    cargo
     tree-sitter
     lua51Packages.lua
     luarocks
+    python3
+    python311Packages.pynvim
     #python311Packages.flake8
     appimage-run
     # for hyprland
