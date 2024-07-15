@@ -120,6 +120,15 @@
   hardware.bluetooth.enable = true; # enables support for Bluetooth
   hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
   services.blueman.enable = true;
+  ## to show battery ? (it's shown before, just test)
+  hardware.bluetooth.settings = {
+	  General = {
+	  	  Experimental = true;
+	    };
+  };
+  ## may be fix some errors?
+  hardware.enableAllFirmware = true;
+
 
 
   # Define a user account. Don't forget to set a password with ‘passwd’.

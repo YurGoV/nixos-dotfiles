@@ -12,6 +12,7 @@ sudo nixos-rebuild switch --flake .#laptop
 nix-channel --add https://nixos.org/channels/nixos-24.05 nixpkgs
 sudo nix-channel --add https://github.com/nix-community/home-manager/archive/release-24.05.tar.gz home-manager
 nix-channel --update
+sudo nix-channel --update
 nix-shell '<home-manager>' -A install
 
 # rebuild home manager by flake
@@ -31,6 +32,7 @@ ln -s ~/.dotfiles/home-manager/apps/configs/NvLazy ~/.config/NvLazy
 
 
 # make symlinc to lvim config:
+mkdir ~/.config/lvim
 ln -s /home/yurgo/.dotfiles/home-manager/apps/configs/lvim/config.lua /home/yurgo/.config/lvim/config.lua
 ln -s /home/yurgo/.dotfiles/home-manager/apps/configs/lvim/lazy-lock.json /home/yurgo/.config/lvim/lazy-lock.json
 
