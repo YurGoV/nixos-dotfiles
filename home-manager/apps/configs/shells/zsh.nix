@@ -28,11 +28,13 @@
         file = "p10k.zsh";
       }
     ];
+
     shellAliases = {
       #nv = "NVIM_APPNAME=NvLazy nvim";
       nvv = "NVIM_APPNAME=NvLazy appimage-run ~/.dotfiles/home-manager/apps/bin/nvim.appimage";
       nv = "NVIM_APPNAME=NvLazy nvim";
       lv = "NVIM_APPNAME=lvim appimage-run ~/.dotfiles/home-manager/apps/bin/nvim.appimage";
+      lw = "DRI_PRIME=1 lightworks-2023.1";
 	    # lv = "lvim";
       monitors-toggle = "~/.dotfiles/scripts/hyprland/monitors-toggle";
       np = "swpm";

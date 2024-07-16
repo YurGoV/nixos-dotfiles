@@ -7,6 +7,9 @@
 
   # kernelParams
   # boot.initrd.kernelModules = [ "amdgpu" ];
+  # boot.kernelParams = [
+  #   "amdgpu"
+  # ];
 
   # BootParams
   boot.loader.systemd-boot.enable = false;
@@ -77,7 +80,7 @@
   # Enable the X11 windowing system.
   services.xserver.enable = true;
   #? Intel drivers
-  services.xserver.videoDrivers = [ "amdgpu" ];
+  # services.xserver.videoDrivers = [ "amdgpu" ];
   
 
   # Enable the XFCE Desktop Environment.
@@ -159,29 +162,38 @@
 
   # List packages installed in system profile. To search, run:
   environment.systemPackages = with pkgs; [
-  xfce.xfce4-pulseaudio-plugin
-  xfce.xfce4-systemload-plugin
-  vim
-  mc
-  git
-  # FOR HYPRLAND
-  polkit
-  dconf
-  # TODO: move xwayland to home-manager
-  xwayland
-  #swaylock
-  #swayidle
-  wdisplays
-  docker-compose
-  docker
-  #
-  libva
-  libvdpau-va-gl
-  vaapiVdpau
-  libvdpau-va-gl
-  libva-utils
-  ffmpeg_5-full
+    xfce.xfce4-pulseaudio-plugin
+    xfce.xfce4-systemload-plugin
+    vim
+    mc
+    git
+    # FOR HYPRLAND
+    polkit
+    dconf
+    # TODO: move xwayland to home-manager
+    xwayland
+    #swaylock
+    #swayidle
+    wdisplays
+    docker-compose
+    docker
+    #
+    libva
+    libvdpau-va-gl
+    vaapiVdpau
+    libvdpau-va-gl
+    libva-utils
+    ffmpeg_5-full
   ];
+  ## just for test
+  environment.variables = {
+    # VAAPI and VDPAU config for accelerated video.
+    # See https://wiki.archlinux.org/index.php/Hardware_video_acceleration
+    # "VDPAU_DRIVER" = "radeonsi";
+    # "LIBVA_DRIVER_NAME" = "radeonsi";
+   ## test for davinci
+    ROC_ENABLE_PRE_VEGA = "1";
+  };
 
   # TODO: move xwayland to home-manager
   # wayland
@@ -208,7 +220,23 @@
    enable = true;
    driSupport = true;
    driSupport32Bit = true;
+   ## test for davinci
+   extraPackages = with pkgs; [
+     rocmPackages_5.clr.icd
+     rocmPackages_5.clr
+     rocmPackages_5.rocminfo
+     rocmPackages_5.rocm-runtime
+   ];
   };
+  systemd.tmpfiles.rules = [
+    "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages_5.clr}"
+  ];
+   ## test for davinci
+
+  ## just test
+  # hardware.opengl.extraPackages32 = with pkgs; [
+  #   driversi686Linux.amdvlk
+  # ];
 
 
 

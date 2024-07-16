@@ -152,6 +152,12 @@ in {
     bat
     fd
     eza
+    ## video
+    radeontop
+    lightworks
+    # davinci-resolve
+    ## shell utils
+    eza
   ];
 
 
