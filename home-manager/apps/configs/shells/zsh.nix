@@ -35,6 +35,7 @@
       nv = "NVIM_APPNAME=NvLazy nvim";
       lv = "NVIM_APPNAME=lvim appimage-run ~/.dotfiles/home-manager/apps/bin/nvim.appimage";
       lw = "DRI_PRIME=1 lightworks-2023.1";
+      # cn = "DRI_PRIME=1 appimage-run ~/progs/cinelerra/CinGG-20220928-x86_64.AppImage";
 	    # lv = "lvim";
       monitors-toggle = "~/.dotfiles/scripts/hyprland/monitors-toggle";
       np = "swpm";
