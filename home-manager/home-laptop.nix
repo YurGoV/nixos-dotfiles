@@ -155,6 +155,9 @@ in {
     ## video
     radeontop
     lightworks
+    # blender
+    (unstable.blender.override {})
+    vlc
     # davinci-resolve
     ## shell utils
     eza
