@@ -140,6 +140,7 @@ in {
     zoom-us
     #OFFICE
     onlyoffice-bin
+    masterpdfeditor
     # screen capture
     grim
     swappy
@@ -155,8 +156,8 @@ in {
     ## video
     radeontop
     lightworks
-    # blender
-    (unstable.blender.override {})
+    # blender-hip
+    (unstable.blender-hip.override {})
     vlc
     # davinci-resolve
     ## shell utils

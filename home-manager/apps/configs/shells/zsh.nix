@@ -43,6 +43,7 @@
       reencode-screen-record = "~/.dotfiles/scripts/diff/reencode-screen-record";
       # run psql util temporary
       psql="nix shell nixpkgs#postgresql --command psql";
+      mountusb="sudo mount -t vfat /dev/sdb /home/yurgo/mnt -o uid=$(id -u yurgo),gid=$(id -g yurgo),umask=0022";
     };
     # PNPM SETUP
     sessionVariables = {
