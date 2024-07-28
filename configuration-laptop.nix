@@ -10,11 +10,11 @@
   # boot.kernelParams = [
   #   "amdgpu"
   # ];
-  boot.kernelParams = [
-    "radeon.modeset=1"
-    "amdgpu.exp_hw_support=1"
-    "amdgpu.dc=1"
-  ];
+  # boot.kernelParams = [
+  #   "radeon.modeset=1"
+  #   "amdgpu.exp_hw_support=1"
+  #   "amdgpu.dc=1"
+  # ];
 
   # BootParams
   boot.loader.systemd-boot.enable = false;
@@ -83,10 +83,10 @@
   };
 
   # Enable the X11 windowing system.
-  services.xserver.enable = true;
+  # services.xserver.enable = true;
   #? Intel drivers
   # services.xserver.videoDrivers = [ "amdgpu-pro" ];
-  services.xserver.videoDrivers = [ "amdgpu" ];
+  # services.xserver.videoDrivers = [ "amdgpu" ];
   
 
   # Enable the XFCE Desktop Environment.
@@ -254,32 +254,40 @@
   #opengl
   # hardware.amdgpu.opencl = true;
   # hardware.amdgpu.loadInInitrd = true;
-  hardware.amdgpu = {
-    opencl.enable = true;
-    # loadInInitrd = true;
-  };
+  # hardware.amdgpu = {
+  #   opencl.enable = true;
+  #   # loadInInitrd = true;
+  # };
   hardware.opengl = {
    enable = true;
    driSupport = true;
    driSupport32Bit = true;
    ## test for davinci
    extraPackages = with pkgs; [
+      rocmPackages_5.clr.icd
+      rocmPackages_5.clr
+      rocmPackages_5.rocminfo
+      rocmPackages_5.rocm-runtime
+      # rocmPackages.clr.icd
+      # rocmPackages.clr
+      # rocmPackages.rocminfo
+      # rocmPackages.rocm-runtime
      #
-     libvdpau-va-gl
-     libva-utils
-     vaapiVdpau
-     libva
-     libva-utils
-     # libva-mesa-driver
-      mesa_drivers
-     #
-     linuxKernel.packages.linux_6_6.amdgpu-pro
-     rocmPackages.rocminfo
-     rocmPackages.clr.icd
-     rocmPackages.clr
-     rocmPackages.rocm-runtime
-     rocmPackages.rocm-device-libs
-    rocmPackages.hipblas
+    #  libvdpau-va-gl
+    #  libva-utils
+    #  vaapiVdpau
+    #  libva
+    #  libva-utils
+    #  # libva-mesa-driver
+    #   mesa_drivers
+    #  #
+    #  linuxKernel.packages.linux_6_6.amdgpu-pro
+    #  rocmPackages.rocminfo
+    #  rocmPackages.clr.icd
+    #  rocmPackages.clr
+    #  rocmPackages.rocm-runtime
+    #  rocmPackages.rocm-device-libs
+    # rocmPackages.hipblas
     # rocmPackages.rocminfo
      # rocm-opencl-runtime
      # rocm-hip
@@ -290,12 +298,12 @@
       ##rocmPackages_5.rocm-runtime
    ];
   };
-  # systemd.tmpfiles.rules = [
-  #   "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages_5.clr}"
-  # ];
   systemd.tmpfiles.rules = [
-    "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}"
+    "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages_5.clr}"
   ];
+  # systemd.tmpfiles.rules = [
+  #   "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}"
+  # ];
 
    ## test for davinci
 
