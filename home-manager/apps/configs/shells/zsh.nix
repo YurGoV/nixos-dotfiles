@@ -48,11 +48,22 @@
     # PNPM SETUP
     sessionVariables = {
       PNPM_HOME = "/home/yurgo/.pnpm-global";
+      LIBVA_DRIVERS_PATH = "/run/opengl-driver/lib/dri";
+      LIBVA_DRIVER_NAME = "radeonsi";
+      DRI_PRIME = "1";
+      VA_API_VERSION = 1.21;
+      MESA_VAAPI_DEVICE = /dev/dri/renderD129;
       };
     initExtra = ''
       bindkey '^f' autosuggest-accept
       export PATH="$PNPM_HOME:$PATH"
       export PATH="$HOME/.npm-global/bin:$PATH"
+      export ROCM_PATH=/opt/rocm
+      export HIP_PATH=/opt/rocm/hip
+      export PATH=$PATH:$ROCM_PATH/bin:$HIP_PATH/bin
+      export LIBVA_DRIVER_NAME=radeonsi
+      export OPENCL_VENDOR_PATH=/etc/OpenCL/vendors
+      export OCL_ICD_VENDORS=/etc/OpenCL/vendors
     '';
   };
 

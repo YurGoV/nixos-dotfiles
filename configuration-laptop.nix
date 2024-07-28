@@ -10,6 +10,11 @@
   # boot.kernelParams = [
   #   "amdgpu"
   # ];
+  boot.kernelParams = [
+    "radeon.modeset=1"
+    "amdgpu.exp_hw_support=1"
+    "amdgpu.dc=1"
+  ];
 
   # BootParams
   boot.loader.systemd-boot.enable = false;
@@ -38,7 +43,7 @@
         CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
 
         CPU_MIN_PERF_ON_AC = 0;
-        CPU_MAX_PERF_ON_AC = 70;
+        CPU_MAX_PERF_ON_AC = 60;
         CPU_MIN_PERF_ON_BAT = 0;
         CPU_MAX_PERF_ON_BAT = 50;
 
@@ -80,7 +85,8 @@
   # Enable the X11 windowing system.
   services.xserver.enable = true;
   #? Intel drivers
-  # services.xserver.videoDrivers = [ "amdgpu" ];
+  # services.xserver.videoDrivers = [ "amdgpu-pro" ];
+  services.xserver.videoDrivers = [ "amdgpu" ];
   
 
   # Enable the XFCE Desktop Environment.
@@ -131,6 +137,14 @@
   };
   ## may be fix some errors?
   hardware.enableAllFirmware = true;
+  # hardware.firmware = {
+  #   enable = true;
+  #   extraFirmware = [ pkgs.amdgpu-firmware ];
+  #
+  #   # Optionally, you can add more firmware packages if needed
+  #   # extraPackages = [ pkgs.linux-firmware ];
+  # };
+
 
 
 
@@ -138,9 +152,9 @@
   users.users.yurgo = {
     isNormalUser = true;
     description = "yurgo";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
-    packages = with pkgs; [
-    ];
+    extraGroups = [ "networkmanager" "wheel" "docker" "video" ];
+    # packages = with pkgs; [
+    # ];
   };
 
   # Install firefox.
@@ -179,11 +193,23 @@
     docker
     #
     libva
-    libvdpau-va-gl
     vaapiVdpau
+    libvdpau-va-gl
     libvdpau-va-gl
     libva-utils
     ffmpeg_5-full
+    vulkan-tools
+    vulkan-loader
+    #
+    rocm-opencl-runtime
+    # rocm-device-libs
+    # rocm-comgr
+    opencl-headers
+    ocl-icd
+    clinfo
+    # rocm-opencl
+    opencl-headers
+    mesa_drivers
   ];
   ## just for test
   environment.variables = {
@@ -192,6 +218,16 @@
     # "VDPAU_DRIVER" = "radeonsi";
     # "LIBVA_DRIVER_NAME" = "radeonsi";
    ## test for davinci
+    # LIBVA_DRIVERS_PATH = "/run/opengl-driver/lib/dri";
+    # LIBVA_DRIVER_NAME = "radeonsi";
+    # DRI_PRIME = "1";  # Force using the discrete GPU
+    # VDPAU_DRIVER = "radeonsi";
+    # VA_API_VERSION = "1.21";
+   ## test for davinci
+    # MESA_VAAPI_DEVICE = "/dev/dri/renderD128";
+    # LIBVA_MESA_DEVICE = "/dev/dri/renderD128";
+    # WLR_DRM_DEVICES = "/dev/dri/card1";  # Ensure card1 is the discrete AMD GPU
+    ##
     ROC_ENABLE_PRE_VEGA = "1";
   };
 
@@ -216,21 +252,51 @@
   };
   services.dbus.enable = true;
   #opengl
+  # hardware.amdgpu.opencl = true;
+  # hardware.amdgpu.loadInInitrd = true;
+  hardware.amdgpu = {
+    opencl.enable = true;
+    # loadInInitrd = true;
+  };
   hardware.opengl = {
    enable = true;
    driSupport = true;
    driSupport32Bit = true;
    ## test for davinci
    extraPackages = with pkgs; [
-     rocmPackages_5.clr.icd
-     rocmPackages_5.clr
-     rocmPackages_5.rocminfo
-     rocmPackages_5.rocm-runtime
+     #
+     libvdpau-va-gl
+     libva-utils
+     vaapiVdpau
+     libva
+     libva-utils
+     # libva-mesa-driver
+      mesa_drivers
+     #
+     linuxKernel.packages.linux_6_6.amdgpu-pro
+     rocmPackages.rocminfo
+     rocmPackages.clr.icd
+     rocmPackages.clr
+     rocmPackages.rocm-runtime
+     rocmPackages.rocm-device-libs
+    rocmPackages.hipblas
+    # rocmPackages.rocminfo
+     # rocm-opencl-runtime
+     # rocm-hip
+     # linuxPackages_6_6.amdgpu-pro
+      ##rocmPackages_5.clr.icd
+      ##rocmPackages_5.clr
+      ##rocmPackages_5.rocminfo
+      ##rocmPackages_5.rocm-runtime
    ];
   };
+  # systemd.tmpfiles.rules = [
+  #   "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages_5.clr}"
+  # ];
   systemd.tmpfiles.rules = [
-    "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages_5.clr}"
+    "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}"
   ];
+
    ## test for davinci
 
   ## just test

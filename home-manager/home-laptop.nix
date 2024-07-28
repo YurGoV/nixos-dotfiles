@@ -154,12 +154,14 @@ in {
     fd
     eza
     ## video
+    glxinfo
+    vdpauinfo
     radeontop
     lightworks
     # blender-hip
     (unstable.blender-hip.override {})
     vlc
-    # davinci-resolve
+    davinci-resolve
     ## shell utils
     eza
   ];
