@@ -281,7 +281,7 @@
     #  # libva-mesa-driver
     #   mesa_drivers
     #  #
-    #  linuxKernel.packages.linux_6_6.amdgpu-pro
+    # linuxKernel.packages.linux_6_6.amdgpu-pro
     #  rocmPackages.rocminfo
     #  rocmPackages.clr.icd
     #  rocmPackages.clr

@@ -157,6 +157,7 @@ in {
     glxinfo
     vdpauinfo
     radeontop
+    amdgpu_top
     lightworks
     # blender-hip
     (unstable.blender-hip.override {})
