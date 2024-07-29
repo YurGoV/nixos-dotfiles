@@ -47,7 +47,7 @@
     };
     # PNPM SETUP
     sessionVariables = {
-      PNPM_HOME = "/home/yurgo/.pnpm-global";
+        PNPM_HOME = "/home/yurgo/.pnpm-global";
       };
     initExtra = ''
       bindkey '^f' autosuggest-accept

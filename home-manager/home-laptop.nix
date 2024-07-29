@@ -154,12 +154,15 @@ in {
     fd
     eza
     ## video
+    glxinfo
+    vdpauinfo
     radeontop
+    amdgpu_top
     lightworks
     # blender-hip
     (unstable.blender-hip.override {})
     vlc
-    # davinci-resolve
+    davinci-resolve
     ## shell utils
     eza
   ];
@@ -224,6 +227,6 @@ in {
 
   # Let Home Manager install and manage itself.
   programs.home-manager = {
-  enable = true;
+    enable = true;
   };
 }
