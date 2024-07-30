@@ -17,7 +17,7 @@ in {
     ./apps/configs/mongodb/mongosh.nix
     ./apps/configs/wofi/wofi.nix
     ./apps/configs/vifm/vifm.nix
-    ./apps/configs/yazi.nix
+    ./apps/configs/yazi/yazi.nix
   ];
 
   # Home Manager needs a bit of information about you and the paths it should
@@ -172,6 +172,8 @@ in {
     eza
     ## phone utils
     jmtpfs
+    pandoc
+    glow
   ];
 
 
