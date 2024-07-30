@@ -17,6 +17,7 @@ in {
     ./apps/configs/mongodb/mongosh.nix
     ./apps/configs/wofi/wofi.nix
     ./apps/configs/vifm/vifm.nix
+    ./apps/configs/yazi.nix
   ];
 
   # Home Manager needs a bit of information about you and the paths it should
@@ -148,11 +149,15 @@ in {
     gpu-screen-recorder
     simplescreenrecorder
     wf-recorder
+    ffmpeg_5-full
+    opusTools
+    sox
     # linux console utils
     ncdu
     bat
     fd
     eza
+    parallel
     ## video
     glxinfo
     vdpauinfo
@@ -165,6 +170,8 @@ in {
     davinci-resolve
     ## shell utils
     eza
+    ## phone utils
+    jmtpfs
   ];
 
 

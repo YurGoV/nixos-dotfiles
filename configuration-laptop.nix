@@ -152,7 +152,7 @@
   users.users.yurgo = {
     isNormalUser = true;
     description = "yurgo";
-    extraGroups = [ "networkmanager" "wheel" "docker" "video" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" "video" "plugdev" ];
     # packages = with pkgs; [
     # ];
   };
@@ -197,7 +197,6 @@
     libvdpau-va-gl
     libvdpau-va-gl
     libva-utils
-    ffmpeg_5-full
     vulkan-tools
     vulkan-loader
     #
