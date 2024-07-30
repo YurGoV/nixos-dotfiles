@@ -14,5 +14,7 @@
             sort_reverse = true;
         };
     };
+    # Keybindings, nothing for now
+    keymap = {};
   };
 }
