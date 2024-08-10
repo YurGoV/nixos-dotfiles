@@ -1,4 +1,5 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
+# { config, pkgs, ... }:
 # added for unstable neovim
 let
   unstable = import (builtins.fetchTarball "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz") { };
@@ -118,7 +119,9 @@ in {
     #neovim
     (unstable.neovim.override { vimAlias = true; })
     # vimPlugins.neodev-nvim
-    cargo
+    # ! cargo is in rustup. uncomment if remove rustup
+    # cargo
+    jq
     tree-sitter
     lua51Packages.lua
     luarocks
@@ -174,6 +177,13 @@ in {
     jmtpfs
     pandoc
     glow
+    # MySQL
+    mysql
+    # for prisma
+    direnv
+    openssl_3_3
+    rustup
+    protobuf
   ];
 
 
