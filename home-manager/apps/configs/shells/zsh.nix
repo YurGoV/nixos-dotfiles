@@ -49,6 +49,7 @@
     # PNPM SETUP
     sessionVariables = {
         PNPM_HOME = "/home/yurgo/.pnpm-global";
+        ZSH_TMUX_CONFIG = "$HOME/.config/tmux/tmux.conf";
       };
     initExtra = ''
       bindkey '^f' autosuggest-accept

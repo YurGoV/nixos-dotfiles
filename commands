@@ -74,5 +74,8 @@ Platform #0: AMD Accelerated Parallel Processing
 npm global setup:
 mkdir -p ~/.npm-global
 npm config set prefix '~/.npm-global'
-Add the npm global bin directory to your PATH by adding the following line to your shell configuration file (e.g., .bashrc, .zshrc):
-export PATH="$HOME/.npm-global/bin:$PATH"
+# done. Add the npm global bin directory to your PATH by adding the following line to your shell configuration file (e.g., .bashrc, .zshrc):
+# done. export PATH="$HOME/.npm-global/bin:$PATH"
+
+# tmux config reload:
+tmux source-file ~/.config/tmux/tmux.conf
