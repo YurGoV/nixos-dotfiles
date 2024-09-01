@@ -52,7 +52,7 @@
   };
 
 
-  networking.hostName = "laptop"; # Define your hostname.
+  networking.hostName = "thinkpad"; # Define your hostname.
 
   # Enable networking
   networking.networkmanager.enable = true;
