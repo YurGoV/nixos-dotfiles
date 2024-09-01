@@ -1,3 +1,4 @@
+#home-laptop.nix
 { pkgs, ... }:
 let
   unstable = import (builtins.fetchTarball "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz") { };
@@ -71,7 +72,7 @@ in {
     mongodb-compass
     zsh-powerlevel10k
     # LUNARVIM
-    lunarvim
+    # lunarvim
     #??? not work
     # luaPackages.jsregexp
     # vimPlugins.luasnip

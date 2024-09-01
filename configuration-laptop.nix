@@ -1,3 +1,4 @@
+# congiguration-laptop.nix
 { config, pkgs, ... }:
 
 {
@@ -17,6 +18,14 @@
   # ];
 
   # BootParams
+  boot.kernelParams = [ "amdgpu.dc=1"
+    "radeon.si_support=0"
+    "pcie_aspm=force"
+    "amdgpu.si_support=1"
+    "splash"
+    "usbcore.autosuspend=-1"
+  ];
+
   boot.loader.systemd-boot.enable = false;
 
   boot.loader.efi.canTouchEfiVariables = true;
@@ -25,15 +34,15 @@
   boot.loader.grub.efiSupport = true;
   boot.loader.grub.useOSProber = true;
 
-  ## Powermanagement (for suspend & hibernate)
+  ## Powermanagement
   powerManagement.enable = true;
 
   ## LAPTOP Configure
-  # for intel spu-s (prevent overhiting)
-  services.thermald.enable = true;
   services.tlp = {
       enable = true;
       settings = {
+       #experimental to prevent bluetooth turn off periodically
+       USB_AUTOSUSPEND = 0;
        ### # CPU_SCALING_GOVERNOR_ON_AC = "performance";
        ## CPU_SCALING_GOVERNOR_ON_AC = "schedutil";
        ## # CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
@@ -82,6 +91,7 @@
     LC_TIME = "uk_UA.UTF-8";
   };
 
+  services.thermald.enable = false; # Disable thermald for non-Intel CPUs
   # Enable the X11 windowing system.
   # services.xserver.enable = true;
   #? Intel drivers
@@ -126,25 +136,32 @@
   };
 
   ## Enable bluetooth
-  hardware.bluetooth.enable = true; # enables support for Bluetooth
-  hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
-  services.blueman.enable = true;
-  ## to show battery ? (it's shown before, just test)
-  hardware.bluetooth.settings = {
-	  General = {
-	  	  Experimental = true;
-	    };
-  };
-  ## may be fix some errors?
-  hardware.enableAllFirmware = true;
-  # hardware.firmware = {
-  #   enable = true;
-  #   extraFirmware = [ pkgs.amdgpu-firmware ];
-  #
-  #   # Optionally, you can add more firmware packages if needed
-  #   # extraPackages = [ pkgs.linux-firmware ];
+  # hardware.bluetooth.enable = true; # enables support for Bluetooth
+  # hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
+  # services.blueman.enable = true;
+  # hardware.bluetooth.settings = {
+  #  General = {
+  #  	  Experimental = true;
+  #    };
   # };
-
+  # hardware.enableAllFirmware = true;
+    hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+    settings = {
+      General = {
+        Name = "Laptop";
+        ControllerMode = "dual";
+        FastConnectable = "true";
+        Experimental = "true";
+        Enable = "Source,Sink,Media,Socket";
+      };
+      Policy = {
+        AutoEnable = "true";
+      };
+    };
+  };
+  services.blueman.enable = true;
 
 
 
@@ -156,6 +173,15 @@
     # packages = with pkgs; [
     # ];
   };
+  security.sudo.extraRules= [
+  {  users = [ "yurgo" ];
+    commands = [
+       { command = "ALL" ;
+         options= [ "NOPASSWD" ]; # "SETENV" # Adding the following could be a good idea
+      }
+    ];
+  }
+];
 
   # Install firefox.
   # programs.firefox.enable = true;
@@ -176,8 +202,8 @@
 
   # List packages installed in system profile. To search, run:
   environment.systemPackages = with pkgs; [
-    xfce.xfce4-pulseaudio-plugin
-    xfce.xfce4-systemload-plugin
+    # xfce.xfce4-pulseaudio-plugin
+    # xfce.xfce4-systemload-plugin
     vim
     mc
     git

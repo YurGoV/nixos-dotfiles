@@ -1,3 +1,4 @@
+# waybar.nix
 { config, pkgs, lib, ... }:
 
       # ${builtins.readFile "${pkgs.waybar}/etc/xdg/waybar/style.css"}
