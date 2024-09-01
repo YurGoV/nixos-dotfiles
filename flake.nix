@@ -17,6 +17,10 @@
   
     in {
       nixosConfigurations = {
+        thinkpad = nixpkgs.lib.nixosSystem {
+          inherit system;
+          modules = [ ./configuration-thinkpad.nix ];
+        };
         laptop = nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [ ./configuration-laptop.nix ];
@@ -27,6 +31,12 @@
         };
        };
        homeConfigurations = {
+         thinkpad = home-manager.lib.homeManagerConfiguration {
+           inherit pkgs;
+  	       modules = [
+	           ./home-manager/home-thinkpad.nix
+	         ];
+         };
          yurgo = home-manager.lib.homeManagerConfiguration {
            inherit pkgs;
   	       modules = [
@@ -39,7 +49,6 @@
 	           ./home-manager/home-laptop.nix
 	         ];
          };
-
        };
     };
 }
