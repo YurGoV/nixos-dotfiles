@@ -128,11 +128,10 @@ in {
     vdpauinfo
     radeontop
     amdgpu_top
-    lightworks
+    #lightworks
     # blender-hip
-    (unstable.blender-hip.override {})
+    #(unstable.blender-hip.override {})
     vlc
-    davinci-resolve
     ## shell utils
     eza
     ## phone utils
