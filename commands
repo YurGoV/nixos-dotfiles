@@ -29,7 +29,9 @@ ln -s /home/yurgo/.dotfiles/home-manager/apps/configs/hypr/hyprpaper.conf /home/
 
 # make symlinc to nvim config:
 ln -s ~/.dotfiles/home-manager/apps/configs/NvLazy ~/.config/NvLazy
-
+# to make LazyVim possibility to install nul_ls, run in terminal:
+rustup install stable
+rustup default stable
 
 # make symlinc to lvim config:
 mkdir ~/.config/lvim
