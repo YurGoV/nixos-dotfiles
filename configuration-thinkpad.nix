@@ -70,6 +70,7 @@
       enable = true;
       settings = {
        #experimental to prevent bluetooth turn off periodically
+       # Disable Bluetooth power saving
        USB_AUTOSUSPEND = 0;
        ### # CPU_SCALING_GOVERNOR_ON_AC = "performance";
        ## CPU_SCALING_GOVERNOR_ON_AC = "schedutil";
@@ -88,7 +89,6 @@
        START_CHARGE_THRESH_BAT0 = 55; # 55 and bellow it starts to charge
        STOP_CHARGE_THRESH_BAT0 = 60; # 60 and above it stops charging
 
-       # Disable Bluetooth power saving
       ### USB_BLACKLIST_BTUSB = 1; # Disable USB autosuspend for all Bluetooth USB devices
       ### USB_AUTOSUSPEND = 0; # Alternatively, disable autosuspend for all USB devices if needed
 
