@@ -42,7 +42,6 @@ in {
     nodePackages.pnpm
     obsidian
     killall
-    # vifm-full
     pcmanfm
     #git
     glab
@@ -67,16 +66,9 @@ in {
     # xclip
     wl-clipboard
     tree-sitter
-    # docker
     postman
     mongodb-compass
     zsh-powerlevel10k
-    # LUNARVIM
-    # lunarvim
-    #??? not work
-    # luaPackages.jsregexp
-    # vimPlugins.luasnip
-    #??? not work
     #neovim
     (unstable.neovim.override { vimAlias = true; })
     # vimPlugins.neodev-nvim
@@ -88,19 +80,14 @@ in {
     luarocks
     python3
     python311Packages.pynvim
-    #python311Packages.flake8
     appimage-run
     # for hyprland
     waybar
     pavucontrol
     networkmanager
-    # wofi
     hyprpaper
     pipewire
     wireplumber
-    # xdg-desktop-portal-hyprland
-    # wlogout
-    # communication
     slack
     telegram-desktop
     zoom-us
@@ -155,6 +142,10 @@ in {
     # # the Nix store. Activating the configuration will then make '~/.screenrc' a
     # # symlink to the Nix store copy.
     # ".screenrc".source = dotfiles/screenrc;
+    # ".config/hypr/hyprland.conf".source = dotfiles/home-manager/apps/configs/hypr/hyprland.conf;
+    # ".config/hypr/hyprpaper.conf".source = .dotfiles/home-manager/apps/configs/hypr/hyprpaper.conf;
+
+    # ".config/NvLazy/".source = .dotfiles/home-manager/apps/configs/NvLazy;
 
     # # You can also set the file content immediately.
     # ".gradle/gradle.properties".text = ''

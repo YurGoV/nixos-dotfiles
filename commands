@@ -34,9 +34,9 @@ rustup install stable
 rustup default stable
 
 # make symlinc to lvim config:
-mkdir ~/.config/lvim
-ln -s /home/yurgo/.dotfiles/home-manager/apps/configs/lvim/config.lua /home/yurgo/.config/lvim/config.lua
-ln -s /home/yurgo/.dotfiles/home-manager/apps/configs/lvim/lazy-lock.json /home/yurgo/.config/lvim/lazy-lock.json
+# mkdir ~/.config/lvim
+# ln -s /home/yurgo/.dotfiles/home-manager/apps/configs/lvim/config.lua /home/yurgo/.config/lvim/config.lua
+# ln -s /home/yurgo/.dotfiles/home-manager/apps/configs/lvim/lazy-lock.json /home/yurgo/.config/lvim/lazy-lock.json
 
 # make monitor toggle script executable
 chmod u+x ./scripts/hyprland/monitors-toggle
