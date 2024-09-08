@@ -81,3 +81,10 @@ npm config set prefix '~/.npm-global'
 
 # tmux config reload:
 tmux source-file ~/.config/tmux/tmux.conf
+
+journalctl -u bluetooth
+sudo journalctl -u bluetooth --since "1 hour ago"
+systemctl status bluetooth
+sudo systemctl restart bluetooth
+
+

@@ -1,5 +1,5 @@
 # congiguration-laptop.nix
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   imports = [
@@ -8,6 +8,50 @@
 
   # kernelParams
   boot.initrd.kernelModules = [ "amdgpu" ];
+
+  ### new for thinkpad:
+  boot.kernelParams = [
+    # Force use of the thinkpad_acpi driver for backlight control.
+    # This allows the backlight save/load systemd service to work.
+    "acpi_backlight=native"
+    # With BIOS version 1.12 and the IOMMU enabled, the amdgpu driver
+    # either crashes or is not able to attach to the GPU depending on
+    # the kernel version. I've seen no issues with the IOMMU disabled.
+    #
+    # BIOS version 1.13 fixes the IOMMU issues, but we leave the IOMMU
+    # in software mode to avoid a sad experience for those people that drew
+    # the short straw when they bought their laptop.
+    "iommu=soft"
+    # Explicitly set amdgpu support in place of radeon
+    # ad GPS say for  integrated Radeon graphics based on the Vega architecture,
+    # not RDNA2.
+    "radeon.cik_support=0"
+    "amdgpu.cik_support=1"
+  ];
+  hardware.trackpoint.enable = lib.mkDefault true;
+  hardware.trackpoint.emulateWheel = lib.mkDefault config.hardware.trackpoint.enable;
+
+  services.fstrim.enable = lib.mkDefault true;
+
+  hardware.amdgpu.initrd.enable = lib.mkDefault true;
+  hardware.cpu.amd.updateMicrocode =
+    lib.mkDefault config.hardware.enableRedistributableFirmware;
+
+  boot.extraModulePackages = [ config.boot.kernelPackages.zenpower ];
+  boot.kernelModules = [ "zenpower" ];
+
+  # boot.kernelModules = [
+  #   "acpi_call"
+  #   # Add other kernel modules if needed
+  # ] ++ (config.boot.kernelModules or []);
+  #
+  # Conditional kernel module loading based on TLP
+  # boot.kernelModules = lib.mkIf config.services.tlp.enable [
+  #   "acpi_call"
+  #   # Add other kernel modules if needed
+  # ] ++ (config.boot.kernelModules or []);
+  ### new for thinkpad:
+
 
   # boot params
   boot.loader.systemd-boot.enable = false;
