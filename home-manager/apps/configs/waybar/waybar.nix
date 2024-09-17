@@ -26,8 +26,8 @@
         "bluetooth"
         "network"
         "cpu"
-        "memory"
         "temperature"
+        "memory"
         "battery"
         "clock"
         "tray"
@@ -70,18 +70,27 @@
         format = "{usage}% ";
         tooltip = false;
       };
+      temperature = {
+        # hwmon-path = "/sys/class/hwmon/hwmon0/temp1_input"; #GPU
+        hwmon-path = "/sys/class/hwmon/hwmon2/temp1_input";
+        critical-threshold = 80;
+        # format = "{temperatureC}°C {icon}";
+        format = "{temperatureC}°C";
+        # format-icons = [ "" "" "" ];
+      };
       memory = { format = "{}% "; };
       network = {
         interval = 3;
         format-alt = "{ifname}: {ipaddr}/{cidr}";
         format-disconnected = "Disconnected ⚠";
-        format-ethernet = "{ifname}: {ipaddr}/{cidr} ⊡  up: {bandwidthUpBits} down: {bandwidthDownBits}";
+        # format-ethernet = "{ifname}: {ipaddr}/{cidr} ⊡  up: {bandwidthUpBits} down: {bandwidthDownBits}";
+        format-ethernet = "⊡  up: {bandwidthUpBits} down: {bandwidthDownBits}";
         format-linked = "{ifname} (No IP) noIp";
         format-wifi = "{essid} ({signalStrength}%) ";
         on-click = "nm-applet";
       };
       pulseaudio = {
-        format = "{volume}% {icon} {format_source}";
+        format = "{volume}% {icon}   {format_source}";
         format-bluetooth = "{volume}% {icon}  {format_source}";
         format-bluetooth-muted = " {icon}  {format_source}";
         format-icons = {
@@ -113,11 +122,6 @@
         on-click = "blueman-manager";
       };
       "sway/mode" = { format = ''<span style="italic">{}</span>''; };
-      temperature = {
-        critical-threshold = 80;
-        format = "{temperatureC}°C {icon}";
-        format-icons = [ "" "" "" ];
-      };
     }];
   };
 }

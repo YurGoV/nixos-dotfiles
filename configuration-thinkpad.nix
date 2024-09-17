@@ -69,9 +69,27 @@
   services.tlp = {
       enable = true;
       settings = {
-       #experimental to prevent bluetooth turn off periodically
-       # Disable Bluetooth power saving
        USB_AUTOSUSPEND = 0;
+       #Optional helps save long term battery health
+       START_CHARGE_THRESH_BAT0 = 55; # 55 and bellow it starts to charge
+       STOP_CHARGE_THRESH_BAT0 = 60; # 60 and above it stops charging
+       # CPU settings for AC power (when plugged in)
+       CPU_SCALING_GOVERNOR_ON_AC="powersave";# Keep CPU in 'powersave' governor when on AC to limit high-frequency usage
+       CPU_BOOST_ON_AC=0; # Disable CPU boost on AC to avoid unnecessary high-performance spikes
+       #CPU_ENERGY_PERF_POLICY_ON_AC="balance_performance";
+       CPU_ENERGY_PERF_POLICY_ON_AC="balance_power"; # Favor power efficiency while maintaining reasonable performance
+       
+       # CPU settings for Battery power (when unplugged)
+       CPU_SCALING_GOVERNOR_ON_BAT="powersave"; # Use 'powersave' to prioritize energy savings on battery
+       CPU_BOOST_ON_BAT=0; # Disable CPU boost on battery to save energy and reduce wear
+       CPU_ENERGY_PERF_POLICY_ON_BAT="power"; # Prioritize power savings over performance when on battery
+       
+       # CPU frequency limits to prevent excessive power usage and heat
+       #CPU_MIN_PERF_ON_AC=40; # Minimum CPU performance percentage on AC power (40%)
+       CPU_MAX_PERF_ON_AC=85; # Maximum CPU performance percentage on AC power (85%)
+       #CPU_MIN_PERF_ON_BAT=20; # Minimum CPU performance percentage on battery (20%)
+       CPU_MAX_PERF_ON_BAT=60; # Maximum CPU performance percentage on battery (60%)
+
        ### # CPU_SCALING_GOVERNOR_ON_AC = "performance";
        ## CPU_SCALING_GOVERNOR_ON_AC = "schedutil";
        ## # CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
@@ -84,13 +102,6 @@
        ## CPU_MAX_PERF_ON_AC = 60;
        ## CPU_MIN_PERF_ON_BAT = 0;
        ## CPU_MAX_PERF_ON_BAT = 50;
-
-       #Optional helps save long term battery health
-       START_CHARGE_THRESH_BAT0 = 55; # 55 and bellow it starts to charge
-       STOP_CHARGE_THRESH_BAT0 = 60; # 60 and above it stops charging
-
-      ### USB_BLACKLIST_BTUSB = 1; # Disable USB autosuspend for all Bluetooth USB devices
-      ### USB_AUTOSUSPEND = 0; # Alternatively, disable autosuspend for all USB devices if needed
 
       };
   };

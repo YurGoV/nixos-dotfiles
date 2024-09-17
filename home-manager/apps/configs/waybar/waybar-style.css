@@ -135,6 +135,25 @@ label:focus {
   animation-direction: alternate;
 }
 
+#temperature.critical {
+  color: @alert; /* Critical temperature color */
+  font-weight: bold;
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.5;
+  }
+}
+
 /* #cpu { */
 /*   color: #cb221b; */
 /* } */
