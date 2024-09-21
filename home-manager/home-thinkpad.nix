@@ -66,7 +66,9 @@ in {
     # xclip
     wl-clipboard
     tree-sitter
+    # api test
     postman
+    insomnia
     mongodb-compass
     zsh-powerlevel10k
     #neovim
@@ -132,6 +134,8 @@ in {
     openssl_3_3
     rustup
     protobuf
+    # cloud sync
+    rclone
   ];
 
 
