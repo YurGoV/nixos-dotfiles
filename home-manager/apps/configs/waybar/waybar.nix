@@ -77,7 +77,7 @@
       };
        # Custom fan module configuration
       "custom/fan" = {  # <--- NEW SECTION
-        format = "{} <big>❋</big>";  # Customize the format as needed
+        format = "{}";  # Customize the format as needed
         exec = "~/.dotfiles/scripts/hw/get-fan-speed.sh";  # <--- CHANGE THIS TO YOUR SCRIPT PATH
         interval = 5;  # Update every 5 seconds
         tooltip = false;

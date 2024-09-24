@@ -17,4 +17,4 @@ else
 	CLASS="fan-speed-idle"
 fi
 
-echo "{\"text\":\"$FORMATTED_SPEED\", \"class\":\"$CLASS\"}"
+echo "{\"text\":\"$FORMATTED_SPEED ❋\", \"class\":\"$CLASS\"}"
