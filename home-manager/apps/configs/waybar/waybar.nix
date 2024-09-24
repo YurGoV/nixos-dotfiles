@@ -1,7 +1,6 @@
 # waybar.nix
 { config, pkgs, lib, ... }:
 
-      # ${builtins.readFile "${pkgs.waybar}/etc/xdg/waybar/style.css"}
 {
   programs.waybar = {
     enable = true;
@@ -27,14 +26,11 @@
         "network"
         "cpu"
         "temperature"
+        "custom/fan"
         "memory"
         "battery"
         "clock"
         "tray"
-      # ] ++ (if config.hostId == "yoga" then [ "battery" ] else [ ])
-      # ++ [
-      #   "clock"
-      #   "tray"
       ];
       "custom/power" = {
         format = " ⏻ ";
@@ -72,12 +68,21 @@
       };
       temperature = {
         # hwmon-path = "/sys/class/hwmon/hwmon0/temp1_input"; #GPU
+        # // TODO: change to sensord
         hwmon-path = "/sys/class/hwmon/hwmon2/temp1_input";
         critical-threshold = 80;
         # format = "{temperatureC}°C {icon}";
         format = "{temperatureC}°C";
         # format-icons = [ "" "" "" ];
       };
+       # Custom fan module configuration
+      "custom/fan" = {  # <--- NEW SECTION
+        format = "{} <big>❋</big>";  # Customize the format as needed
+        exec = "~/.dotfiles/scripts/hw/get-fan-speed.sh";  # <--- CHANGE THIS TO YOUR SCRIPT PATH
+        interval = 5;  # Update every 5 seconds
+        tooltip = false;
+        return-type = "json";
+      };  # <--- END OF NEW SECTION
       memory = { format = "{}% "; };
       network = {
         interval = 3;

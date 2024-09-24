@@ -112,6 +112,8 @@ in {
     fd
     eza
     parallel
+    ## hw monitoring
+    lm_sensors
     ## video
     glxinfo
     vdpauinfo
