@@ -53,6 +53,8 @@
         ZSH_TMUX_CONFIG = "$HOME/.config/tmux/tmux.conf";
       };
     initExtra = ''
+      # Set Zsh option to ignore commands starting with a space
+      setopt HIST_IGNORE_SPACE
       bindkey '^f' autosuggest-accept
       export PATH="$PNPM_HOME:$PATH"
       export PATH="$HOME/.npm-global/bin:$PATH"
