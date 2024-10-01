@@ -1,4 +1,4 @@
-#home-laptop.nix
+#home-thinkpad.nix
 { pkgs, ... }:
 let
   unstable = import (builtins.fetchTarball "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz") { };
@@ -8,11 +8,11 @@ in {
 #{
   imports = [
     ./apps/configs/shells/zsh.nix
-    ./apps/configs/termilals/alacritty.nix
+    ./apps/configs/terminals/alacritty.nix
     ./apps/configs/waybar/waybar.nix
     ./apps/configs/waybar/wlogout.nix
-    ./apps/configs/termilals/kitty.nix
-    ./apps/configs/termilals/tmux.nix
+    ./apps/configs/terminals/kitty.nix
+    ./apps/configs/terminals/tmux.nix
     ./apps/configs/swaylock.nix
     ./apps/configs/mongodb/mongosh.nix
     ./apps/configs/wofi/wofi.nix
@@ -125,6 +125,7 @@ in {
     vlc
     ## shell utils
     eza
+    tmuxifier
     ## phone utils
     jmtpfs
     pandoc

@@ -24,7 +24,7 @@
       enable_audio_bell = false;
     };
     extraConfig = ''
-      include ~/.dotfiles/home-manager/apps/configs/termilals/kitty.conf
+      include ~/.dotfiles/home-manager/apps/configs/terminals/kitty.conf
     '';
   };
 }

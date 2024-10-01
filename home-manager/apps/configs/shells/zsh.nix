@@ -57,6 +57,8 @@
       export PATH="$PNPM_HOME:$PATH"
       export PATH="$HOME/.npm-global/bin:$PATH"
       eval "$(direnv hook zsh)"
+      export TMUXIFIER_LAYOUT_PATH="$HOME//.dotfiles/home-manager/apps/configs/terminals/tmuxifier-sessions"
+      eval "$(tmuxifier init -)"
     '';
   };
 

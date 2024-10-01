@@ -70,7 +70,7 @@
         # hwmon-path = "/sys/class/hwmon/hwmon0/temp1_input"; #GPU
         # // TODO: change to sensord
         hwmon-path = "/sys/class/hwmon/hwmon2/temp1_input";
-        critical-threshold = 80;
+        critical-threshold = 75;
         # format = "{temperatureC}°C {icon}";
         format = "{temperatureC}°C";
         # format-icons = [ "" "" "" ];

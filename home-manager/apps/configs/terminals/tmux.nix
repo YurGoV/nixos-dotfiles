@@ -1,3 +1,4 @@
+# tmux.nix
 { config, pkgs, ... } :
 
 let
@@ -12,7 +13,10 @@ let
   '';
 in {
 
-  imports = [ ./tmux.theme.nix ];
+  imports = [
+    ./tmux.theme.nix
+    # ./tmuxifier.nix
+  ];
 
   programs.tmux = {
     enable = true;
