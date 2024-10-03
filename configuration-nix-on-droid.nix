@@ -31,8 +31,10 @@
   # Read the changelog before changing this value
   system.stateVersion = "24.05";
 
-  terminal.font = "${pkgs.nerdfonts}/share/fonts/opentype/NerdFonts/DroidSansMNerdFont-Regular.otf";
+  # terminal.font = "${pkgs.nerdfonts}/share/fonts/opentype/NerdFonts/DroidSansMNerdFont-Regular.otf";
+  # terminal.font = "${pkgs.nerdfonts}/share/fonts/opentype/NerdFonts/DroidSansMNerdFont-Regular.otf";
   #terminal.font = "${pkgs.nerdfonts}/share/fonts/opentype/NerdFonts/FiraCodeNerdFont-Regular.otf";
+  terminal.font = ./assets/font.ttf;
 
   user.shell = if builtins.elem pkgs.zsh config.environment.packages
              then "${pkgs.zsh}/bin/zsh"
