@@ -5,19 +5,26 @@ let
 in {
  # Read the changelog before changing this value
   home.stateVersion = "24.05";
+
+
+  imports = [
+    ./apps/configs/shells/zsh.nix
+  ];
+
   home.packages = with pkgs; [
     htop
     (unstable.neovim.override { vimAlias = true; })
+    zsh-powerlevel10k
   ];
-  programs.zsh = {
-    enable = true;
-    #interactiveShellInit = ''
-    #export EDITOR="nvim"
-    ##export NIXPKGS_ALLOW_UNFREE=1
-    #export NIXPKGS_ALLOW_INSECURE=1
-    #'';
-    #default = true;
-  };
+  # programs.zsh = {
+  #   enable = true;
+  #   ##interactiveShellInit = ''
+  #   ##export EDITOR="nvim"
+  #   ###export NIXPKGS_ALLOW_UNFREE=1
+  #   ##export NIXPKGS_ALLOW_INSECURE=1
+  #   ##'';
+  #   ##default = true;
+  # };
   home.sessionVariables = {
     EDITOR = "nvim";
     NIXPKGS_ALLOW_UNFREE = 1;
