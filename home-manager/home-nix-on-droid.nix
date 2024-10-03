@@ -9,12 +9,15 @@ in {
 
   imports = [
     ./apps/configs/shells/zsh.nix
+    ./apps/configs/terminals/tmux.nix
   ];
 
   home.packages = with pkgs; [
     htop
     (unstable.neovim.override { vimAlias = true; })
     zsh-powerlevel10k
+    direnv
+    tmuxifier
   ];
   # programs.zsh = {
   #   enable = true;
