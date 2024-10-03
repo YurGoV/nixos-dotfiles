@@ -13,11 +13,38 @@ in {
   ];
 
   home.packages = with pkgs; [
+    nodejs_22
+    nodePackages.pnpm
     htop
     (unstable.neovim.override { vimAlias = true; })
     zsh-powerlevel10k
     direnv
     tmuxifier
+    #
+    gcc
+    gnumake
+    shfmt
+    stylua
+    ripgrep
+    fd
+    fzf
+    vimPlugins.luasnip
+    unzip
+    wget
+    markdownlint-cli
+    tree-sitter
+    lua51Packages.lua
+    luarocks
+    python3
+    python311Packages.pynvim
+    ncdu
+    bat
+    fd
+    eza
+    mysql
+    openssl_3_3
+    rustup
+    protobuf
   ];
   # programs.zsh = {
   #   enable = true;

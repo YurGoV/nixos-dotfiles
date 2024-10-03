@@ -124,7 +124,6 @@ in {
     #(unstable.blender-hip.override {})
     vlc
     ## shell utils
-    eza
     tmuxifier
     ## phone utils
     jmtpfs
