@@ -31,6 +31,8 @@
   # Read the changelog before changing this value
   system.stateVersion = "24.05";
 
+  #terminal.font = "${pkgs.nerdfonts}/share/fonts/opentype/NerdFonts/DroidSansMNerdFont-Regular.otf";
+  terminal.font = "${pkgs.nerdfonts}/share/fonts/opentype/NerdFonts/FiraCodeNerdFont-Regular.otf";
 
   home-manager = {
       config = ./home-manager/home-nix-on-droid.nix;
@@ -46,5 +48,5 @@
   '';
 
   # Set your time zone
-  #time.timeZone = "Europe/Berlin";
+  time.timeZone = "Europe/Kyiv";
 }
