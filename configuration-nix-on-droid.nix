@@ -34,6 +34,10 @@
   terminal.font = "${pkgs.nerdfonts}/share/fonts/opentype/NerdFonts/DroidSansMNerdFont-Regular.otf";
   #terminal.font = "${pkgs.nerdfonts}/share/fonts/opentype/NerdFonts/FiraCodeNerdFont-Regular.otf";
 
+  user.shell = if builtins.elem pkgs.zsh config.environment.packages
+             then "${pkgs.zsh}/bin/zsh"
+             else "${pkgs.bashInteractive}/bin/bash";
+
   home-manager = {
       config = ./home-manager/home-nix-on-droid.nix;
       backupFileExtension = "hm-bak";
