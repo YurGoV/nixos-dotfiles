@@ -1,9 +1,13 @@
 { config, lib, pkgs, ... }:
-{
+let
+  unstable = import (builtins.fetchTarball "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz") { };
+#add 'in' for unstable neovim
+in {
  # Read the changelog before changing this value
   home.stateVersion = "24.05";
   home.packages = with pkgs; [
     htop
+    (unstable.neovim.override { vimAlias = true; })
   ];
   programs.zsh = {
     enable = true;
