@@ -58,7 +58,7 @@
        };
        nixOnDroidConfigurations = {
          default = nix-on-droid.lib.nixOnDroidConfiguration {
-           inherit aarch64Pkgs;
+           pkgs = aarch64Pkgs;
            modules = [ ./configuration-nix-on-droid.nix ];
            extraSpecialArgs = {};
            home-manager-path = home-manager;
