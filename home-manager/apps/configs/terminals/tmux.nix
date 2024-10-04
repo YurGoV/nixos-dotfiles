@@ -6,9 +6,9 @@ let
   remoteConf = builtins.toFile "tmux.remote.conf" ''
     unbind C-q
     unbind q
-    set-option -g prefix C-s
+    set-option -g prefix C-j
     bind s send-prefix
-    bind C-s last-window
+    bind C-j last-window
     set-option -g status-position top
   '';
 in {
@@ -41,9 +41,9 @@ in {
       # Apply remoteConf settings globally
       unbind C-q
       unbind q
-      set-option -g prefix C-s
+      set-option -g prefix C-j
       bind s send-prefix
-      bind C-s last-window
+      bind C-j last-window
       set-option -g status-position bottom
 
       bind-key h select-pane -L
