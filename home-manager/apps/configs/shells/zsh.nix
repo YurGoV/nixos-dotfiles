@@ -55,10 +55,14 @@
     initExtra = ''
       # Set Zsh option to ignore commands starting with a space
       setopt HIST_IGNORE_SPACE
+      export HISTIGNORE='cd "/home/yurgo/*"'
       bindkey '^f' autosuggest-accept
+      # Set up npm/pnpm paths
       export PATH="$PNPM_HOME:$PATH"
       export PATH="$HOME/.npm-global/bin:$PATH"
+      # Set up direnv
       eval "$(direnv hook zsh)"
+      #Set up tmuxifier
       export TMUXIFIER_LAYOUT_PATH="$HOME//.dotfiles/home-manager/apps/configs/terminals/tmuxifier-sessions"
       eval "$(tmuxifier init -)"
     '';
