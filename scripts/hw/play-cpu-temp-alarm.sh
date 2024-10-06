@@ -1,33 +1,16 @@
-###!/bin/bash
-
-# Get fan speed using sensors
-FAN_SPEED=$(sensors | grep 'fan1' | awk '{print $2}')
-if [[ "$FAN_SPEED" -eq 0 ]]; then
-	FORMATTED_SPEED="0"
-else
-
-	INTEGER_PART=$((FAN_SPEED / 1000))
-	DECIMAL_PART=$((FAN_SPEED % 1000))
-	FORMATTED_SPEED="${INTEGER_PART},${DECIMAL_PART}"
-fi
-
-if [ "$FAN_SPEED" -gt 0 ]; then
-	CLASS="fan-speed-run"
-else
-	CLASS="fan-speed-idle"
-fi
-
-echo "{\"text\":\"$FORMATTED_SPEED ❋\", \"class\":\"$CLASS\"}"
-
-
-### NEW PART: PLAY SOUND WHEN CPU IS HOT
-
+# Path to the sound file
 SOUND_FILE="/home/yurgo/.dotfiles/assets/sounds/warning-sound-6686.mp3"
 # Temporary file to track if sound has been played
 SOUND_PLAYED_FILE="/dev/shm/sound_played"
 
 # Get the current temperature
+# FAN_SPEED=$(sensors | grep 'fan1' | awk '{print $2}')
+# CURRENT_TEMP=$(sensors | grep 'CPU' | awk '{print $2}' | tr -d '+°C')
+
+# Get the current temperature as a digit
+# CURRENT_TEMP=$(sensors | grep 'CPU' | grep -o '[0-9]\+')
 CURRENT_TEMP=$(sensors | grep 'CPU' | grep -o '[0-9]\+' | tr -d '\n')
+# CURRENT_TEMP=$(sensors | grep 'CPU' | grep -o '[0-9]\+' | tr -d '\n')
 # Convert to Celsius (divide by 1000)
 CURRENT_TEMP_C=$((CURRENT_TEMP / 10))
 

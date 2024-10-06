@@ -83,6 +83,7 @@
         tooltip = false;
         return-type = "json";
       };  # <--- END OF NEW SECTION
+
       memory = { format = "{}% "; };
       network = {
         interval = 3;
