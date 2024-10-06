@@ -48,6 +48,7 @@ in {
     lazygit
     google-chrome
     firefox
+    firefox-devedition-bin
     fira-code-nerdfont
     alacritty
     alacritty-theme
