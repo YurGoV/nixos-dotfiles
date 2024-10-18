@@ -45,7 +45,7 @@
       psql="nix shell nixpkgs#postgresql --command psql";
       mountusb="sudo mount -t vfat /dev/sdb /home/yurgo/mnt -o uid=$(id -u yurgo),gid=$(id -g yurgo),umask=0022";
       yy = "yazi";
-      osync = "cd ~/Documents/obsidian/ && git add . && git commit -m 'current' && git push && rclone bisync ~/Documents/obsidian pcloud:/obsidian";
+      osync = "cd ~/Documents/obsidian/ && git add . && git commit -m 'current' && git push && rclone bisync ~/Documents/obsidian pcloud:/obsidian --exclude '.obsidian/**' --exclude '.git/**' --exclude '.trash/**'";
     };
     # PNPM SETUP
     sessionVariables = {
