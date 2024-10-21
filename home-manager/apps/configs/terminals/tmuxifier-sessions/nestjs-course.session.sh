@@ -7,9 +7,9 @@ session_root "~/dev/learn/nestjs-course/"
 if initialize_session "nestjs-course"; then
 
   new_window "DB"
-  run_cmd " cd db && docker-compose up"  # Change to the db directory and run docker-compose
-  split_v 70
   run_cmd " cd db && sleep 5 && mysql --defaults-file=./my.cnf"  # Change to the db directory and run docker-compose
+  split_v 70
+  run_cmd " cd db && docker-compose up"  # Change to the db directory and run docker-compose
 
   # Create a new window inline within session layout definition.
   new_window "E"
