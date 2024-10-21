@@ -45,6 +45,7 @@ in {
     openssl_3_3
     rustup
     protobuf
+    lazygit
   ];
   # programs.zsh = {
   #   enable = true;
