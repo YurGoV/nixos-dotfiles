@@ -87,4 +87,25 @@ sudo journalctl -u bluetooth --since "1 hour ago"
 systemctl status bluetooth
 sudo systemctl restart bluetooth
 
+### home manager/flake deriviations:
+# 1. **Check available generations**:
+   home-manager generations
+
+# to define current generation:
+home-manager current-generation
+
+
+# Switch to a previous generation (replace `<generation_number>` with the desired generation number):
+home-manager switch --flake .#thinkpad --impure --generation <generation_number>
+
+# Rollback to the last generation**:
+home-manager switch --flake .#thinkpad --impure --rollback
+
+# Check the current generation** and using a backup:
+home-manager current-generation
+
+If you have made backups of your Home Manager configuration files,
+restore them manually by copying them back to your Home Manager 
+configuration directory (usually located at ~/.config/nixpkgs/).
+### home manager/flake deriviations:
 
