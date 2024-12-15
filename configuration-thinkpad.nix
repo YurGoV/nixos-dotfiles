@@ -277,6 +277,10 @@
   ];
   ## just for test
   environment.variables = {
+    #try in 24.11:
+    # AMD_VULKAN_ICD = "RADV";
+
+
     # VAAPI and VDPAU config for accelerated video.
     # See https://wiki.archlinux.org/index.php/Hardware_video_acceleration
     # "VDPAU_DRIVER" = "radeonsi";
@@ -322,10 +326,20 @@
   #   opencl.enable = true;
   #   # loadInInitrd = true;
   # };
+
+  ## in 24.11 need to change .opengl to .grapics: hhardware.graphics
   hardware.opengl = {
    enable = true;
+   # to disable in 24.11
    driSupport = true;
    driSupport32Bit = true;
+   ## try (enable) in 24.11:
+   # extraPackages = with pkgs; [
+   #   rocmPackages.clr.icd
+   #   pkgs.amdvlk
+   #   pkgs.driversi686Linux.amdvlk
+   # ];
+
    ## test for davinci
    ####extraPackages = with pkgs; [
    ####   rocmPackages_5.clr.icd
@@ -393,6 +407,7 @@
     #fira-code-symbols
   ];
 
+  # Do not change this value - it means the version of FIRST installed!!!
   system.stateVersion = "24.05"; # Did you read the comment?
   
   # HOME MANAGER

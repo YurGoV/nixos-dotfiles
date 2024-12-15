@@ -29,7 +29,7 @@ in {
   # compatible with. This helps avoid breakage when a new Home Manager release
   # introduces backwards incompatible changes.
   #
-  # You should not change this value, even if you update Home Manager. If you do
+  # YOU SHOULD NOT CHANGE THIS VALUE, EVEN IF YOU UPDATE HOME MANAGER. If you do
   # want to update the value, then make sure to first check the Home Manager
   # release notes.
   home.stateVersion = "24.05"; # Please read the comment before changing.
@@ -113,6 +113,8 @@ in {
     fd
     eza
     parallel
+    # display main OS/hw info:
+    fastfetch
     ## hw monitoring
     lm_sensors
     ## video

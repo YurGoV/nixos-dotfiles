@@ -89,7 +89,7 @@ sudo systemctl restart bluetooth
 
 ### home manager/flake deriviations:
 # 1. **Check available generations**:
-   home-manager generations
+home-manager generations
 
 # to define current generation:
 home-manager current-generation
