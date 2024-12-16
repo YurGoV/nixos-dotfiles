@@ -9,7 +9,20 @@ vim.keymap.set("n", ";", ":w<CR>")
 vim.keymap.set("i", "jj", "<Esc>")
 vim.keymap.set("i", "fg", "<Esc>la") -- vim.keymap.set("t", "<C-j>", "<C-/>")
 
-vim.keymap.set("n", "<Tab>j", function() Snacks.terminal(nil, { cwd = LazyVim.root() , win = { style = "float" }}) end, { desc = "Terminal (Root Dir)" })  -- Normal mode
+-- Terminal: on Tab-j open as float, on default C-/ - open at bottom
+vim.keymap.set("n", "<Tab>j", function()
+  Snacks.terminal(nil, { 
+    cwd = LazyVim.root(),
+    win = { 
+      relative = "editor",
+      position = "float",
+      width = 0.8,
+      height = 0.8,
+      border = "rounded",
+    }
+  })
+end, { desc = "Terminal (Root Dir)" })  -- Normal mode
 vim.keymap.set("t", "<Tab>j", "<cmd>close<cr>", { desc = "Hide Terminal" })  -- Terminal mode
+--
 -- vim.keymap.set("n", "<c-/>", function() Snacks.terminal(nil, { cwd = LazyVim.root(), win = { style = "terminal" }}) end, { desc = "Terminal (Root Dir)" })  -- Normal mode
 
