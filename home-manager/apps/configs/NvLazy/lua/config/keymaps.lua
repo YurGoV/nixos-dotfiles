@@ -8,21 +8,7 @@ vim.keymap.set("n", ";", ":w<CR>")
 -- vim.keymap.set("n", ";", ":")
 vim.keymap.set("i", "jj", "<Esc>")
 vim.keymap.set("i", "fg", "<Esc>la") -- vim.keymap.set("t", "<C-j>", "<C-/>")
--- float terminal keymaps
-local Util = require("lazyvim.util")
-local lazyterm = function()
-  Util.terminal(nil, { cwd = Util.root() })
-end
--- vim.keymap.set("n", "<C-j>", lazyterm)
-vim.keymap.set("n", "<tab>j", lazyterm)
-vim.keymap.set("t", "<tab>j", "<cmd>close<cr>")
 
--- rebind format command
--- vim.keymap.set("n", "<leader>lf", "<Leader>cf")
--- formatting
--- use `vim.keymap.set` instead
---
--- local map = LazyVim.safe_keymap_set
--- map({ "n", "v" }, "<leader>lf", function()
---   LazyVim.format({ force = true })
--- end, { desc = "Format" })
+vim.keymap.set("n", "<Tab>j", function() Snacks.terminal(nil, { cwd = LazyVim.root() }) end, { desc = "Terminal (Root Dir)" })  -- Normal mode
+vim.keymap.set("t", "<Tab>j", "<cmd>close<cr>", { desc = "Hide Terminal" })  -- Terminal mode
+
