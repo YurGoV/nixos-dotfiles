@@ -74,6 +74,9 @@ in {
     zsh-powerlevel10k
     #neovim
     (unstable.neovim.override { vimAlias = true; })
+    #prisma
+    # (unstable.prisma.override { version = "6.0.1"; }) 
+    #
     # vimPlugins.neodev-nvim
     # ! cargo is in rustup. uncomment if remove rustup
     # cargo

@@ -2,11 +2,11 @@
 cp /etc/nixos/hardware-configuration.nix .
 
 # rebuild system on the first time (without flake installed):
-sudo nixos-rebuild switch --flake .#laptop --experimental-features 'nix-command flakes'
+sudo nixos-rebuild switch --flake .#thinkpad --experimental-features 'nix-command flakes'
 
 # rebuild system all other times (with flake installed):
 sudo nixos-rebuild switch --flake . 
-sudo nixos-rebuild switch --flake .#laptop
+sudo nixos-rebuild switch --flake .#thinkpad
 
 #install home manager:
 nix-channel --add https://nixos.org/channels/nixos-24.05 nixpkgs
@@ -16,7 +16,7 @@ sudo nix-channel --update
 nix-shell '<home-manager>' -A install
 
 # rebuild home manager by flake
-home-manager switch --flake .#laptop --impure
+home-manager switch --flake .#thinkpad --impure
 
 # install pnpm vue/typescript module
 pnpm add -g @vue/typescript-plugin
@@ -57,8 +57,8 @@ sudo nix-channel --update
 sudo nix-channel --add https://github.com/nix-community/home-manager/archive/release-24.05.tar.gz home-manager
 sudo nix-channel --update
 
-sudo nixos-rebuild switch --flake .#laptop
-home-manager switch --flake .#laptop --impure
+sudo nixos-rebuild switch --flake .#thinkpad
+home-manager switch --flake .#thinkpad --impure
 
 #list all generations:
 sudo nix-env --list-generations --profile /nix/var/nix/profiles/system
