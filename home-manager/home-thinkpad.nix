@@ -72,10 +72,14 @@ in {
     insomnia
     mongodb-compass
     zsh-powerlevel10k
-    #neovim
-    (unstable.neovim.override { vimAlias = true; })
+    neovim
+    # (unstable.neovim.override { vimAlias = true; })
     #prisma
-    # (unstable.prisma.override { version = "6.0.1"; }) 
+    unstable.prisma 
+    # (unstable.prisma.overrideAttrs {
+    #   version = "6.0.1"; # Specify the desired Prisma version
+    # })
+    # prisma
     #
     # vimPlugins.neodev-nvim
     # ! cargo is in rustup. uncomment if remove rustup
@@ -107,7 +111,7 @@ in {
     gpu-screen-recorder
     simplescreenrecorder
     wf-recorder
-    ffmpeg_5-full
+    ffmpeg_6-full
     opusTools
     sox
     # linux console utils
@@ -136,7 +140,8 @@ in {
     pandoc
     glow
     # MySQL
-    mysql
+    #mysql //renamed to mariadb
+    mariadb
     # for prisma
     direnv
     openssl_3_3

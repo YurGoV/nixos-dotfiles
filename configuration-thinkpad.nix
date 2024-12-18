@@ -164,7 +164,7 @@
   #services.printing.enable = true;
 
   # Enable sound with pipewire.
-  sound.enable = true;
+  # sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -265,7 +265,7 @@
     vulkan-tools
     vulkan-loader
     #
-    rocm-opencl-runtime
+    # rocm-opencl-runtime
     # rocm-device-libs
     # rocm-comgr
     opencl-headers
@@ -273,12 +273,13 @@
     clinfo
     # rocm-opencl
     opencl-headers
-    mesa_drivers
+    # mesa_drivers
+    mesa
   ];
   ## just for test
   environment.variables = {
     #try in 24.11:
-    # AMD_VULKAN_ICD = "RADV";
+    AMD_VULKAN_ICD = "RADV";
 
 
     # VAAPI and VDPAU config for accelerated video.
@@ -327,18 +328,21 @@
   #   # loadInInitrd = true;
   # };
 
-  ## in 24.11 need to change .opengl to .grapics: hhardware.graphics
-  hardware.opengl = {
+  ## in 24.11 need to change .opengl to .grapics: hardware.graphics
+  # hardware.opengl = {
+  hardware.graphics = {
    enable = true;
    # to disable in 24.11
-   driSupport = true;
-   driSupport32Bit = true;
+   # driSupport = true;
+   # driSupport32Bit = true;
+
    ## try (enable) in 24.11:
-   # extraPackages = with pkgs; [
-   #   rocmPackages.clr.icd
-   #   pkgs.amdvlk
-   #   pkgs.driversi686Linux.amdvlk
-   # ];
+   extraPackages = with pkgs; [
+     rocmPackages.clr.icd
+     pkgs.amdvlk
+     pkgs.driversi686Linux.amdvlk
+   ];
+
 
    ## test for davinci
    ####extraPackages = with pkgs; [
@@ -376,6 +380,10 @@
    ####   ##rocmPackages_5.rocm-runtime
    ####];
   };
+
+  # new: added 12.2024:
+  hardware.enableAllFirmware = true;
+  #
   ###systemd.tmpfiles.rules = [
   ###  "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages_5.clr}"
   ###];
