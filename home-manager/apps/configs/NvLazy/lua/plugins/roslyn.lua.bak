@@ -1,0 +1,382 @@
+return {
+  {
+    "williamboman/mason.nvim",
+    opts = { ensure_installed = { "csharpier", "netcoredbg" } },
+  },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = { ensure_installed = { "c_sharp" } },
+  },
+  {
+    "seblj/roslyn.nvim",
+    ft = "cs", -- C# files
+    vscode = false,
+    opts = {
+      -- Enable Roslyn setup with additional settings
+      enable_roslyn_analyzers = true,
+      organize_imports_on_format = true,
+      enable_import_completion = true,
+      config = {
+        capabilities = {
+          -- Add semantic tokens capability
+          semanticTokensProvider = {
+            full = true,
+            range = true
+          }
+        },
+        settings = {
+          ["csharp|inlay_hints"] = {
+            csharp_enable_inlay_hints_for_implicit_object_creation = true,
+            csharp_enable_inlay_hints_for_implicit_variable_types = true,
+            csharp_enable_inlay_hints_for_lambda_parameter_types = true,
+            csharp_enable_inlay_hints_for_types = true,
+            dotnet_enable_inlay_hints_for_indexer_parameters = true,
+            dotnet_enable_inlay_hints_for_literal_parameters = true,
+            dotnet_enable_inlay_hints_for_object_creation_parameters = true,
+            dotnet_enable_inlay_hints_for_other_parameters = true,
+            dotnet_enable_inlay_hints_for_parameters = true,
+            dotnet_suppress_inlay_hints_for_parameters_that_differ_only_by_suffix = true,
+            dotnet_suppress_inlay_hints_for_parameters_that_match_argument_name = true,
+            dotnet_suppress_inlay_hints_for_parameters_that_match_method_intent = true,
+          },
+          ["csharp|code_lens"] = {
+            dotnet_enable_references_code_lens = true,
+          },
+          ["csharp|completion"] = {
+            dotnet_show_completion_items_from_unimported_namespaces = true,
+            dotnet_show_name_completion_suggestions = true,
+          },
+        },
+      },
+    },
+  },
+  {
+    "nvim-neotest/neotest",
+    optional = true,
+    dependencies = {
+      "Issafalcon/neotest-dotnet",
+    },
+    opts = {
+      adapters = {
+        ["neotest-dotnet"] = {
+          -- Options for neotest-dotnet
+        },
+      },
+    },
+  },
+  {
+    "mfussenegger/nvim-dap",
+    opts = function()
+      local dap = require("dap")
+      dap.adapters.netcoredbg = {
+        type = "executable",
+        command = vim.fn.exepath("netcoredbg"),
+        args = { "--interpreter=vscode" },
+      }
+      dap.configurations.cs = {
+        {
+          type = "netcoredbg",
+          request = "launch",
+          name = "Launch C#",
+          program = function()
+            return vim.fn.input("Path to dll: ", vim.fn.getcwd() .. "/", "file")
+          end,
+        },
+      }
+
+      -- Key bindings for debugging
+      vim.api.nvim_set_keymap("n", "<leader>dc", ":lua require'dap'.continue()<CR>", { noremap = true, silent = true })
+      vim.api.nvim_set_keymap("n", "<leader>ds", ":lua require'dap'.step_into()<CR>", { noremap = true, silent = true })
+      vim.api.nvim_set_keymap("n", "<leader>do", ":lua require'dap'.step_out()<CR>", { noremap = true, silent = true })
+      vim.api.nvim_set_keymap("n", "<leader>dr", ":lua require'dap'.repl.open()<CR>", { noremap = true, silent = true })
+    end,
+  },
+  {
+    "neovim/nvim-lspconfig",
+    opts = {
+      servers = {
+        -- Correct configuration for Roslyn
+        -- roslyn = {
+        --   on_attach = function(client, bufnr)
+        --     -- Enable inlay hints if supported by the server
+        --     if client.server_capabilities.inlayHintProvider then
+        --       vim.lsp.inlay_hint.enable(bufnr)
+        --     end
+        --
+        --     -- Custom hover handler for displaying hints
+        --     vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "single" })
+        --
+        --     -- Optionally add LSP status line to the statusline
+        --     require("lsp-status").on_attach(client, bufnr)
+        --     vim.cmd([[autocmd User LspAttach * lua vim.lsp.buf.server_ready()]])
+        --   end,
+        -- },
+      },
+    },
+  },
+  {
+    "nvim-lua/lsp-status.nvim",
+    config = function()
+      require("lsp-status").config({
+        status_symbol = " ",
+        indicator_ok = "✔️",
+        indicator_err = "❌",
+      })
+    end,
+  },
+}
+
+-- return {
+--   {
+--     "williamboman/mason.nvim",
+--     opts = { ensure_installed = { "csharpier", "netcoredbg" } },
+--   },
+--   {
+--     "nvim-treesitter/nvim-treesitter",
+--     opts = { ensure_installed = { "c_sharp" } },
+--   },
+--   {
+--     "seblj/roslyn.nvim",
+--     ft = "cs",
+--     opts = {
+--       handlers = {
+--         ["textDocument/definition"] = function(...)
+--           return require("roslyn").handler(...)
+--         end,
+--       },
+--       keys = {
+--         {
+--           "gd",
+--           LazyVim.has("telescope.nvim") and function()
+--             require("roslyn").telescope_lsp_definitions()
+--           end or function()
+--             require("roslyn").lsp_definitions()
+--           end,
+--           desc = "Goto Definition",
+--         },
+--         -- Add a keybinding for formatting C# code with Roslyn
+--         {
+--           "<leader>cf", -- Keybinding for formatting C#
+--           function()
+--             vim.lsp.buf.format({ async = true })
+--           end,
+--           desc = "Format C#",
+--         },
+--         -- config = function()
+--         --   local exe = nil
+--         --   if vim.fn.has("unix") == 1 then
+--         --       local os = vim.fn.systemlist("grep ^ID= /etc/os-release | cut -d= -f2")[1]
+--         --       if os == "nixos" then
+--         --           exe = { "Microsoft.CodeAnalysis.LanguageServer" }
+--         --       end
+--         --   end
+--         --   require("roslyn").setup({
+--         --       exe = exe,
+--         --   })
+--         -- end,
+--         config = {
+--           settings = {
+--               ["csharp|inlay_hints"] = {
+--                   csharp_enable_inlay_hints_for_implicit_object_creation = true,
+--                   csharp_enable_inlay_hints_for_implicit_variable_types = true,
+--                   csharp_enable_inlay_hints_for_lambda_parameter_types = true,
+--                   csharp_enable_inlay_hints_for_types = true,
+--                   dotnet_enable_inlay_hints_for_indexer_parameters = true,
+--                   dotnet_enable_inlay_hints_for_literal_parameters = true,
+--                   dotnet_enable_inlay_hints_for_object_creation_parameters = true,
+--                   dotnet_enable_inlay_hints_for_other_parameters = true,
+--                   dotnet_enable_inlay_hints_for_parameters = true,
+--                   dotnet_suppress_inlay_hints_for_parameters_that_differ_only_by_suffix = true,
+--                   dotnet_suppress_inlay_hints_for_parameters_that_match_argument_name = true,
+--                   dotnet_suppress_inlay_hints_for_parameters_that_match_method_intent = true,
+--               },
+--               ["csharp|code_lens"] = {
+--                   dotnet_enable_references_code_lens = true,
+--               },
+--           },
+--         },
+--       },
+--       enable_roslyn_analyzers = true,
+--       organize_imports_on_format = true,
+--       enable_import_completion = true,
+--     },
+--   },
+--   {
+--     "nvim-neotest/neotest",
+--     optional = true,
+--     dependencies = {
+--       "Issafalcon/neotest-dotnet",
+--     },
+--     opts = {
+--       adapters = {
+--         ["neotest-dotnet"] = {
+--           -- Here we can set options for neotest-dotnet
+--         },
+--       },
+--     },
+--   },
+--   -- {
+--   --   "mfussenegger/nvim-dap",
+--   --   optional = true,
+--   --   opts = function()
+--   --     local dap = require("dap")
+--   --     if not dap.adapters["netcoredbg"] then
+--   --       dap.adapters["netcoredbg"] = {
+--   --         type = "executable",
+--   --         command = vim.fn.exepath("netcoredbg"),
+--   --         args = { "--interpreter=vscode" },
+--   --         options = {
+--   --           detached = false,
+--   --         },
+--   --       }
+--   --     end
+--   --     for _, lang in ipairs({ "cs", "fsharp", "vb" }) do
+--   --       if not dap.configurations[lang] then
+--   --         dap.configurations[lang] = {
+--   --           {
+--   --             type = "netcoredbg",
+--   --             name = "Launch file",
+--   --             request = "launch",
+--   --             program = function()
+--   --               return vim.fn.input("Path to dll: ", vim.fn.getcwd() .. "/", "file")
+--   --             end,
+--   --             cwd = "${workspaceFolder}",
+--   --           },
+--   --         }
+--   --       end
+--   --     end
+--   --   end,
+--   -- },
+--   {
+--     "mfussenegger/nvim-dap",
+--     opts = function()
+--       local dap = require("dap")
+--       dap.adapters.netcoredbg = {
+--         type = "executable",
+--         command = vim.fn.exepath("netcoredbg"),
+--         args = { "--interpreter=vscode" },
+--       }
+--       dap.configurations.cs = {
+--         {
+--           type = "netcoredbg",
+--           request = "launch",
+--           name = "Launch C#",
+--           program = function()
+--             return vim.fn.input("Path to dll: ", vim.fn.getcwd() .. "/", "file")
+--           end,
+--         },
+--       }
+--
+--       -- Key bindings for debugging
+--       vim.api.nvim_set_keymap("n", "<leader>dc", ":lua require'dap'.continue()<CR>", { noremap = true, silent = true })
+--       vim.api.nvim_set_keymap("n", "<leader>ds", ":lua require'dap'.step_into()<CR>", { noremap = true, silent = true })
+--       vim.api.nvim_set_keymap("n", "<leader>do", ":lua require'dap'.step_out()<CR>", { noremap = true, silent = true })
+--       vim.api.nvim_set_keymap("n", "<leader>dr", ":lua require'dap'.repl.open()<CR>", { noremap = true, silent = true })
+--     end,
+--   },
+--   {
+--     "mfussenegger/nvim-lint",
+--     optional = true,
+--     opts = {
+--       linters_by_ft = {
+--         cmake = { "cmakelint" },
+--       },
+--     },
+--   },
+--   -- {
+--   --   "neovim/nvim-lspconfig",
+--   --   opts = {
+--   --     servers = {
+--   --       omnisharp = {
+--   --         handlers = {
+--   --           ["textDocument/definition"] = function(...)
+--   --             return require("roslyn").handler(...)
+--   --           end,
+--   --         },
+--   --         on_attach = function(client)
+--   --           vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {border = "single"})
+--   --           -- Add LSP status line (optional)
+--   --           vim.cmd([[autocmd User LspAttach * lua vim.lsp.buf.server_ready()]])
+--   --         end,
+--   --       },
+--   --     },
+--   --   },
+--   -- },
+--   -- {
+--   --   "nvim-lspconfig",
+--   --   opts = {
+--   --     servers = {
+--   --       omnisharp = {
+--   --         handlers = {
+--   --           ["textDocument/definition"] = function(...)
+--   --             return require("roslyn").handler(...)
+--   --           end,
+--   --         },
+--   --         on_attach = function(client, bufnr)
+--   --           -- Show status line with `lsp-status`
+--   --           require("lsp-status").on_attach(client, bufnr)
+--   --
+--   --           vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {border = "single"})
+--   --
+--   --            -- Enable inlay hints for the attached server
+--   --           -- if client.server_capabilities.inlayHintProvider then
+--   --             -- vim.lsp.inlay_hint.enable(bufnr)
+--   --           -- else
+--   --           --   print("Inlay hints not supported by the server.")
+--   --           -- end
+--   --
+--   --           -- Optionally add LSP status line to the statusline
+--   --           vim.cmd([[autocmd User LspAttach * lua vim.lsp.buf.server_ready()]])
+--   --         end,
+--   --       },
+--   --     },
+--   --   },
+--   -- },
+--   {
+--     "nvim-lspconfig",
+--     opts = {
+--       servers = {
+--         roslyn = {  -- Using Roslyn here
+--           handlers = {
+--             -- Ensure "Go to Definition" works correctly with Roslyn
+--             ["textDocument/definition"] = function(...)
+--               return require("roslyn").handler(...)
+--             end,
+--             -- Add a hover handler for displaying hints (types, docstrings, etc.)
+--             ["textDocument/hover"] = function(_, result, ctx)
+--               if result and result.contents then
+--                 vim.lsp.util.open_floating_preview(result.contents, "markdown", { border = "single" })
+--               end
+--             end,
+--           },
+--           on_attach = function(client, bufnr)
+--             -- Show status line with `lsp-status`
+--             require("lsp-status").on_attach(client, bufnr)
+--
+--             -- Custom hover handler for displaying hints
+--             vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "single" })
+--
+--             -- Enable inlay hints if supported by the server
+--             if client.server_capabilities.inlayHintProvider then
+--               vim.lsp.inlay_hint.enable(bufnr)
+--             end
+--
+--             -- Optionally add LSP status line to the statusline
+--             vim.cmd([[autocmd User LspAttach * lua vim.lsp.buf.server_ready()]])
+--           end,
+--         },
+--       },
+--     },
+--   },
+--   {
+--     "nvim-lua/lsp-status.nvim",
+--     config = function()
+--       require("lsp-status").config({
+--         status_symbol = " ",
+--         indicator_ok = "✔️",
+--         indicator_err = "❌",
+--       })
+--     end,
+--   },
+-- }
+--

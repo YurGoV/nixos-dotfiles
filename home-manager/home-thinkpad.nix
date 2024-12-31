@@ -76,15 +76,9 @@ in {
     # (unstable.neovim.override { vimAlias = true; })
     #prisma
     unstable.prisma 
-    # (unstable.prisma.overrideAttrs {
-    #   version = "6.0.1"; # Specify the desired Prisma version
-    # })
-    # prisma
-    #
-    # vimPlugins.neodev-nvim
     # ! cargo is in rustup. uncomment if remove rustup
     # cargo
-    jq #for kula rest api tester response parse
+    # jq #for kula rest api tester response parse
     tree-sitter
     lua51Packages.lua
     luarocks
@@ -103,7 +97,7 @@ in {
     zoom-us
     #OFFICE
     onlyoffice-bin
-    masterpdfeditor
+    # masterpdfeditor
     # screen capture
     grim
     swappy
@@ -129,9 +123,6 @@ in {
     vdpauinfo
     radeontop
     amdgpu_top
-    #lightworks
-    # blender-hip
-    #(unstable.blender-hip.override {})
     vlc
     ## shell utils
     tmuxifier
@@ -142,13 +133,22 @@ in {
     # MySQL
     #mysql //renamed to mariadb
     mariadb
-    # for prisma
-    direnv
+    # for prisma (now not needed)
+    # direnv
     openssl_3_3
     rustup
     protobuf
     # cloud sync
     rclone
+
+    #android
+    android-studio
+    android-tools
+    # C#
+    dotnet-sdk
+    jetbrains.rider
+    # roslyn
+    # roslyn-ls
   ];
 
 
@@ -171,25 +171,14 @@ in {
     # '';
   };
 
-  # programs.tmux = {
-  #   enable = true;
-  #   terminal = "tmux-256color";
-  #   extraConfig = ''
-  #     set-option -ga terminal-overrides ",*256col*:Tc:RGB"
-  #   '';
-  # };
-
   # Home Manager can also manage your environment variables through
   # 'home.sessionVariables'. If you don't want to manage your shell through Home
   # Manager then you have to manually source 'hm-session-vars.sh' located at
   # either
-  #
   #  ~/.nix-profile/etc/profile.d/hm-session-vars.sh
-  #
   # or
-  #
   #  /etc/profiles/per-user/yurgo/etc/profile.d/hm-session-vars.sh
-  #
+
   home.sessionVariables = {
     EDITOR = "nvim";
     NIXPKGS_ALLOW_UNFREE = 1;

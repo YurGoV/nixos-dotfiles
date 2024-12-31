@@ -40,19 +40,6 @@
   boot.extraModulePackages = [ config.boot.kernelPackages.zenpower ];
   boot.kernelModules = [ "zenpower" ];
 
-  # boot.kernelModules = [
-  #   "acpi_call"
-  #   # Add other kernel modules if needed
-  # ] ++ (config.boot.kernelModules or []);
-  #
-  # Conditional kernel module loading based on TLP
-  # boot.kernelModules = lib.mkIf config.services.tlp.enable [
-  #   "acpi_call"
-  #   # Add other kernel modules if needed
-  # ] ++ (config.boot.kernelModules or []);
-  ### new for thinkpad:
-
-
   # boot params
   boot.loader.systemd-boot.enable = false;
   # boot.loader.systemd-boot.enable = true;
@@ -102,7 +89,6 @@
        ## CPU_MAX_PERF_ON_AC = 60;
        ## CPU_MIN_PERF_ON_BAT = 0;
        ## CPU_MAX_PERF_ON_BAT = 50;
-
       };
   };
 
@@ -131,30 +117,14 @@
   };
 
   services.thermald.enable = false; # Disable thermald for non-Intel CPUs
-  # Enable the X11 windowing system.
-  # services.xserver.enable = true;
-  #? Intel drivers
-  # services.xserver.videoDrivers = [ "amdgpu-pro" ];
-  # services.xserver.videoDrivers = [ "amdgpu" ];
-  
-
-  # Enable the XFCE Desktop Environment.
-  # !turn on if no awesome config
-  # services.xserver.displayManager.lightdm.enable = false;
-  # services.xserver.desktopManager.xfce.enable = true;
-
-  # sddm for wyland experimental support
-  ##services.xserver.displayManager.sddm.enable = true;
-  ##services.xserver.displayManager.sddm.wayland.enable = true;
   services.displayManager.sddm.wayland.enable = true;
   services.displayManager.sddm.enable = true;
 
   security.pam.services.swaylock = {};
+  # experimental 2024.12.25
+  # security.pam.services.gdm-password.enableGnomeKeyring = true;
+  # services.gnome.gnome-keyring.enable = true;
 
-  # Configure keymap in X11
-  ##services.xserver.layout = "us,ua";
-  ##services.xserver.xkbVariant = "";
-  ##services.xserver.xkbOptions = "grp:rctrl_toggle";
   services.xserver.xkb.variant = "";
   services.xserver.xkb.options = "grp:rctrl_toggle";
   services.xserver.xkb.layout = "us,ua";
@@ -174,31 +144,9 @@
     pulse.enable = true;
   };
 
-  ## Enable bluetooth
-  # hardware.bluetooth.enable = true; # enables support for Bluetooth
-  # hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
-  # services.blueman.enable = true;
-  # hardware.bluetooth.settings = {
-  #  General = {
-  #  	  Experimental = true;
-  #    };
-  # };
-  # hardware.enableAllFirmware = true;
   hardware.bluetooth = {
     enable = true;
     powerOnBoot = true;
-    ###settings = {
-    ###  General = {
-    ###    Name = "Laptop";
-    ###    ControllerMode = "dual";
-    ###    FastConnectable = "true";
-    ###    Experimental = "true";
-    ###    Enable = "Source,Sink,Media,Socket";
-    ###  };
-    ###  Policy = {
-    ###    AutoEnable = "true";
-    ###  };
-    ###};
   };
   services.blueman.enable = true;
 
@@ -209,8 +157,6 @@
     isNormalUser = true;
     description = "yurgo";
     extraGroups = [ "networkmanager" "wheel" "docker" "video" "plugdev" ];
-    # packages = with pkgs; [
-    # ];
   };
   security.sudo.extraRules= [
   {  users = [ "yurgo" ];
@@ -221,10 +167,6 @@
     ];
   }
 ];
-
-  # Install firefox.
-  # programs.firefox.enable = true;
-
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -241,8 +183,6 @@
 
   # List packages installed in system profile. To search, run:
   environment.systemPackages = with pkgs; [
-    # xfce.xfce4-pulseaudio-plugin
-    # xfce.xfce4-systemload-plugin
     vim
     mc
     git
@@ -264,10 +204,6 @@
     libva-utils
     vulkan-tools
     vulkan-loader
-    #
-    # rocm-opencl-runtime
-    # rocm-device-libs
-    # rocm-comgr
     opencl-headers
     ocl-icd
     clinfo
@@ -275,28 +211,18 @@
     opencl-headers
     # mesa_drivers
     mesa
+    # experimental 2024.12.25
+    # gnome-keyring
+    # experimental 2024.12.25
+    # for react 19 migrate:
+    # libsecret
+    # glib
   ];
   ## just for test
   environment.variables = {
     #try in 24.11:
     AMD_VULKAN_ICD = "RADV";
 
-
-    # VAAPI and VDPAU config for accelerated video.
-    # See https://wiki.archlinux.org/index.php/Hardware_video_acceleration
-    # "VDPAU_DRIVER" = "radeonsi";
-    # "LIBVA_DRIVER_NAME" = "radeonsi";
-   ## test for davinci
-    # LIBVA_DRIVERS_PATH = "/run/opengl-driver/lib/dri";
-    # LIBVA_DRIVER_NAME = "radeonsi";
-    # DRI_PRIME = "1";  # Force using the discrete GPU
-    # VDPAU_DRIVER = "radeonsi";
-    # VA_API_VERSION = "1.21";
-   ## test for davinci
-    # MESA_VAAPI_DEVICE = "/dev/dri/renderD128";
-    # LIBVA_MESA_DEVICE = "/dev/dri/renderD128";
-    # WLR_DRM_DEVICES = "/dev/dri/card1";  # Ensure card1 is the discrete AMD GPU
-    ##
     ROC_ENABLE_PRE_VEGA = "1";
   };
 
@@ -308,33 +234,33 @@
     # Whether to enable XWayland
     xwayland.enable = true;
   };
-  #programs.sway = {
-  #  enable = true;
-  #  wrapperFeatures.gtk = true;
-  #};
-  # TODO: move xwayland to home-manager
+
   xdg.portal = {
     enable = true;
     wlr.enable = true;
-    # extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal-hyprland];
+    # extraPortals = [ pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal-hyprland];
+    extraPortals = [ pkgs.xdg-desktop-portal-hyprland];
+    ## new 2024.12.35
+    xdgOpenUsePortal= true;
+    config = {
+      # common.default = ["gtk"];
+      common.default = ["hyprland"];
+      hyprland.default = ["hyprland"];
+    };
+
+    # extraPortals = [
+    #   pkgs.xdg-desktop-portal-gtk
+    # ];
   };
   services.dbus.enable = true;
-  #opengl
-  # hardware.amdgpu.opencl = true;
-  # hardware.amdgpu.loadInInitrd = true;
-  # hardware.amdgpu = {
-  #   opencl.enable = true;
-  #   # loadInInitrd = true;
-  # };
+
+  ### GNOME keyring:
+  # services.gnome.gnome-keyring.enable = true;
 
   ## in 24.11 need to change .opengl to .grapics: hardware.graphics
   # hardware.opengl = {
   hardware.graphics = {
    enable = true;
-   # to disable in 24.11
-   # driSupport = true;
-   # driSupport32Bit = true;
 
    ## try (enable) in 24.11:
    extraPackages = with pkgs; [
@@ -342,63 +268,10 @@
      pkgs.amdvlk
      pkgs.driversi686Linux.amdvlk
    ];
-
-
-   ## test for davinci
-   ####extraPackages = with pkgs; [
-   ####   rocmPackages_5.clr.icd
-   ####   rocmPackages_5.clr
-   ####   rocmPackages_5.rocminfo
-   ####   rocmPackages_5.rocm-runtime
-   ####   # rocmPackages.clr.icd
-   ####   # rocmPackages.clr
-   ####   # rocmPackages.rocminfo
-   ####   # rocmPackages.rocm-runtime
-   ####  #
-   #### #  libvdpau-va-gl
-   #### #  libva-utils
-   #### #  vaapiVdpau
-   #### #  libva
-   #### #  libva-utils
-   #### #  # libva-mesa-driver
-   #### #   mesa_drivers
-   #### #  #
-   #### # linuxKernel.packages.linux_6_6.amdgpu-pro
-   #### #  rocmPackages.rocminfo
-   #### #  rocmPackages.clr.icd
-   #### #  rocmPackages.clr
-   #### #  rocmPackages.rocm-runtime
-   #### #  rocmPackages.rocm-device-libs
-   #### # rocmPackages.hipblas
-   #### # rocmPackages.rocminfo
-   ####  # rocm-opencl-runtime
-   ####  # rocm-hip
-   ####  # linuxPackages_6_6.amdgpu-pro
-   ####   ##rocmPackages_5.clr.icd
-   ####   ##rocmPackages_5.clr
-   ####   ##rocmPackages_5.rocminfo
-   ####   ##rocmPackages_5.rocm-runtime
-   ####];
   };
 
   # new: added 12.2024:
   hardware.enableAllFirmware = true;
-  #
-  ###systemd.tmpfiles.rules = [
-  ###  "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages_5.clr}"
-  ###];
-  # systemd.tmpfiles.rules = [
-  #   "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}"
-  # ];
-
-   ## test for davinci
-
-  ## just test
-  # hardware.opengl.extraPackages32 = with pkgs; [
-  #   driversi686Linux.amdvlk
-  # ];
-
-
 
   ##ALOW INSECURE PKGS
   nixpkgs.config.permittedInsecurePackages = [
@@ -411,8 +284,6 @@
 
   fonts.packages = with pkgs; [
     (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
-    #fira-code
-    #fira-code-symbols
   ];
 
   # Do not change this value - it means the version of FIRST installed!!!

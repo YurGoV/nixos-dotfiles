@@ -61,10 +61,15 @@
       export PATH="$PNPM_HOME:$PATH"
       export PATH="$HOME/.npm-global/bin:$PATH"
       # Set up direnv
-      eval "$(direnv hook zsh)"
+      # eval "$(direnv hook zsh)"
       #Set up tmuxifier
       export TMUXIFIER_LAYOUT_PATH="$HOME//.dotfiles/home-manager/apps/configs/terminals/tmuxifier-sessions"
       eval "$(tmuxifier init -)"
+      # Gnome keyring pahts:
+      # export GNOME_KEYRING_CONTROL=/run/user/$(id -u)/keyring
+      # export GNOME_KEYRING_PID=$(pgrep -fu $(id -u) gnome-keyring-daemon)
+      # export SSH_AUTH_SOCK=/run/user/$(id -u)/keyring/ssh
+
     '';
   };
 
