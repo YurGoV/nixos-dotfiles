@@ -28,6 +28,15 @@
     "radeon.cik_support=0"
     "amdgpu.cik_support=1"
   ];
+
+  # Set to boot on last booting OS:
+  boot.loader.grub.default = "saved";  # Boot the last selected entry
+  boot.loader.grub.extraEntries = ''
+    GRUB_SAVEDEFAULT=true
+  '';
+
+
+
   hardware.trackpoint.enable = lib.mkDefault true;
   hardware.trackpoint.emulateWheel = lib.mkDefault config.hardware.trackpoint.enable;
 

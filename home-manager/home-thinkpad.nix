@@ -149,6 +149,12 @@ in {
     jetbrains.rider
     # roslyn
     # roslyn-ls
+
+    # ZED EDITOR
+    # unstable.zed-editor 
+    # omnisharp-roslyn
+    # glibc
+    # ZED EDITOR
   ];
 
 
