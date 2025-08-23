@@ -1,11 +1,11 @@
 #home-thinkpad.nix
 { pkgs, ... }:
-let
-  unstable = import (builtins.fetchTarball "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz") { };
+##let
+##unstable = import (builtins.fetchTarball "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz") { };
 
 #add 'in' for unstable neovim
-in {
-#{
+##in {
+{
   imports = [
     ./apps/configs/shells/zsh.nix
     ./apps/configs/terminals/alacritty.nix
@@ -47,9 +47,10 @@ in {
     glab
     lazygit
     google-chrome
-    firefox
-    firefox-devedition-bin
-    fira-code-nerdfont
+    #firefox
+    firefox-devedition
+    ##fira-code-nerdfont
+    nerd-fonts.fira-code
     alacritty
     alacritty-theme
     kitty
@@ -74,8 +75,8 @@ in {
     zsh-powerlevel10k
     neovim
     # (unstable.neovim.override { vimAlias = true; })
-    #prisma
-    unstable.prisma 
+    prisma
+    #unstable.prisma 
     # ! cargo is in rustup. uncomment if remove rustup
     # cargo
     # jq #for kula rest api tester response parse
@@ -135,7 +136,8 @@ in {
     mariadb
     # for prisma (now not needed)
     # direnv
-    openssl_3_3
+    ##openssl_3_3
+    openssl_3
     rustup
     protobuf
     # cloud sync

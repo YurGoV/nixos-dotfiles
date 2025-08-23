@@ -144,7 +144,8 @@
 
   # Enable sound with pipewire.
   # sound.enable = true;
-  hardware.pulseaudio.enable = false;
+  ##hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -292,7 +293,9 @@
   users.defaultUserShell = pkgs.zsh;
 
   fonts.packages = with pkgs; [
-    (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
+    nerd-fonts.fira-code
+    nerd-fonts.droid-sans-mono
+    #(nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
   ];
 
   # Do not change this value - it means the version of FIRST installed!!!

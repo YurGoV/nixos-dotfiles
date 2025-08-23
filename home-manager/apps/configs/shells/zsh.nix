@@ -52,7 +52,8 @@
         PNPM_HOME = "/home/yurgo/.pnpm-global";
         ZSH_TMUX_CONFIG = "$HOME/.config/tmux/tmux.conf";
       };
-    initExtra = ''
+    #initExtra = ''
+    initContent = ''
       # Set Zsh option to ignore commands starting with a space
       setopt HIST_IGNORE_SPACE
       export HISTIGNORE='cd "/home/yurgo/*"'
