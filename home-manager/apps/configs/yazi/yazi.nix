@@ -3,30 +3,21 @@
     enable = true;
     enableZshIntegration = true;
     settings = {
-        manager = {
-            # Layout
-            # ratio = [1 2 5];
-            show_hidden = true;
-            show_symlink = true;
-            # Sorting
-            sort_by = "modified";
-            sort_dir_first = true;
-            sort_reverse = true;
-        };
-        # preview = {
-        #   docx = {
-        #     command = "pandoc -s -t markdown -- {} | glow"; 
-        #     mime = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
-        #   };
-        # };
-        #  preview = {
-        #     docx = {
-        #         command = "pandoc -t plain {} | less -R";
-        #         mime = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
-        #         # command = "pandoc -t plain {}";
-        #         # mime = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
-        #     };
-        # };
+      # 👇 "manager" змінено на "mgr"
+      mgr = {
+        # Layout
+        # ratio = [1 2 5];
+        show_hidden = true;
+        show_symlink = true;
+        # Sorting
+        # 👇 "modified" змінено на "mtime"
+        sort_by = "mtime";
+        sort_dir_first = true;
+        sort_reverse = true;
+      };
+      # preview = {
+      #   ... (ваші налаштування preview залишаються тут, якщо вони вам потрібні)
+      # };
     };
     # Keybindings, nothing for now
     keymap = {};
