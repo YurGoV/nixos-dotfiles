@@ -12,6 +12,11 @@
   boot.loader.grub.enable = false;
   boot.loader.systemd-boot.enable = false;
 
+  ## Тест, щоб webstorm на вінді не сварився (?чи працює?)
+  boot.kernel.sysctl = {
+    "fs.inotify.max_user_watches" = 524288;
+  };
+
   # Базові налаштування, які можна зробити спільними
   time.timeZone = "Europe/Kyiv";
   i18n.defaultLocale = "en_US.UTF-8";
